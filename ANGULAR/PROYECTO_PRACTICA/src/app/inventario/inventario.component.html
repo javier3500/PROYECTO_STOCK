@@ -1,0 +1,45 @@
+
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+   
+    <div>
+        <label for="" >BUSCARDOR</label><br>
+        <input class="buscador" type="text" name="filtro" id="" placeholder="ESCRIBE EL NOMBRE DEL ARTICULO" 
+        [(ngModel)] = "filtro">
+       <br><br>
+       
+        <td><BUtton (click) = "open_modal_insertar()"  >INSERTA</BUtton></td>
+
+        <div class="" *ngIf="modal_insertar_boton == true">
+          <app-modal-insertar></app-modal-insertar> 
+        </div>
+
+    </div>
+    <br><br><br>
+  <table id="customers" >
+    <tr>
+      <th>ID_ARTICULO</th> 
+      <th>ARTICULO</th>
+      <th>EXITENCIA</th>
+      <th>PRESENTACION</th>
+      <th>PRECIO_COMPRA</th>
+      <th>PRECIO_VENTA</th>
+      <th>EDITAR</th>
+      <th>ELIMINAR</th>
+    </tr>
+   
+    <tr *ngFor = "let INVENTARIO of ListarCrud | buscador:filtro">
+      <td>{{ INVENTARIO.idarticulo }}</td>
+      <td>{{ INVENTARIO.producto }}</td>
+      <td>{{ INVENTARIO.existencia }}</td>
+      <td>{{ INVENTARIO.presentacion }}</td>
+      <td>{{ INVENTARIO.precioventa }}</td>
+      <td>{{ INVENTARIO.preciocompra }}</td>
+      <td><button (click) = "modificar(INVENTARIO.idarticulo)"  type="button" >EDITAR</button></td>
+      <td><button (click) = "eliminar(INVENTARIO.idarticulo)" type="button" >ELIMINAR</button></td>
+      
+    </tr>
+   
+  </table>
+  
+    
+</div>

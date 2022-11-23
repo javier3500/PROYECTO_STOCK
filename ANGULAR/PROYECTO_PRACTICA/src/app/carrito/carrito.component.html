@@ -1,0 +1,40 @@
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+   
+
+  <div>
+    <label for="">EL CODIGO DEL ARTICULO</label><br>
+    <input class="buscador" type="text" placeholder="INGRESA CODIGO DEL ARTICULO"><br>
+
+    <td><BUtton (click) = "open_modal_listar()"  >BUSCAR</BUtton></td>
+
+        <div class="" *ngIf="modal_lista_boton == true">
+          <app-lista-busqueda></app-lista-busqueda> 
+        </div>
+
+   
+  </div>
+  <br><br><br>
+  <table id="customers">
+    <tr>
+      <th>ID_ARTICULO</th>
+      <th>ARTICULO</th>
+      <th>UNIDADES</th>
+      <th>presentacion</th>
+      <th>PRECIO</th>
+    </tr>
+    <tr *ngFor = "let LISTA_DATOS of r">
+      <td> {{LISTA_DATOS.idarticulo}} </td>
+      <td> {{LISTA_DATOS.producto}}</td>
+      <td> {{LISTA_DATOS.existencia}}</td >
+      <td> {{LISTA_DATOS.presentacion}}</td>
+      <td> {{LISTA_DATOS.precioventa}}</td>
+    </tr>
+    
+  </table>
+  <div>
+    <input class="buscador" [(ngModel)]="total" type="number" name="total" id="total" placeholder="$00.00"><br>
+    <br>
+    <button (click)="mostrar()">FINALIZAR</button>
+  </div>
+  </div>
+  

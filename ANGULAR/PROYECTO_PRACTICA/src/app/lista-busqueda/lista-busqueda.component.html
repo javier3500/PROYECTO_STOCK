@@ -1,0 +1,39 @@
+<p>lista-busqueda works!</p>
+
+
+<label for="">BUSCARDOR</label><br>
+
+<input class="buscador" type="text" name="filtro" id="" placeholder="ESCRIBE EL NOMBRE DEL ARTICULO" 
+[(ngModel)] = "filtro">
+
+<br><br><br>
+  <table id="customers">
+    <tr>
+      <th>ID_ARTICULO</th> 
+      <th>ARTICULO</th>
+      <th>EXITENCIA</th>
+      <th>PRESENTACION</th>
+      <th>PRECIO_COMPRA</th>
+      <th>PRECIO_VENTA</th>
+      <th>LISTAR</th>
+      
+    </tr>
+    <tr *ngFor = "let INVENTARIO of ListarCrud | buscador:filtro">
+      <td>{{ INVENTARIO.idarticulo }}</td>
+      <td>{{ INVENTARIO.producto }}</td>
+      <td>{{ INVENTARIO.existencia }}</td>
+      <td>{{ INVENTARIO.presentacion }}</td>
+      <td>{{ INVENTARIO.preciocompra }}</td>
+      <td>{{ INVENTARIO.precioventa }}</td>
+      <td><button (click) = "agregar_lista(
+        INVENTARIO.idarticulo,
+        INVENTARIO.producto,
+        INVENTARIO.existencia,
+        INVENTARIO.presentacion,
+        INVENTARIO.preciocompra,
+        INVENTARIO.precioventa)"  type="button" >LISTAR</button></td>
+      
+
+    </tr>
+   
+  </table>

@@ -1,0 +1,12 @@
+
+<div class="container">
+    <div class="formulario">
+      <form #form>
+        <input [(ngModel)]="_usuario.nombreusuario" [ngModelOptions]="{standalone: true}" type="text" placeholder="Nombre de usuario">
+        <input [(ngModel)]="_usuario.contrasena" [ngModelOptions]="{standalone: true}"  type="text" placeholder="Contraseña">
+        <input type="text" placeholder="Confirmar contraseña">
+        <input [(ngModel)]="_usuario.tipo" [ngModelOptions]="{standalone: true}" type="text" placeholder="tipo de usuario">
+        <button (click)="agregarUsuario()">Registrar</button>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+
+<div class="container" style="margin-left:17%;padding:1px 16px;height:1000px;">
+    <div class="formulario">
+      <form>
+        <input class="normal" type="text" placeholder="Nombre (s)">
+        <input class="apellidos" type="text" placeholder="Apellido parterno">
+        <input class="apellidos" type="text" placeholder="Apellido materno">
+        <input class="normal" type="date" placeholder="fecha de nacimiento">
+        <h3>Sexo</h3>
+        <span>Femeníno <input name="fem" type="checkbox"></span>
+        <span>Masculíno <input name="mas" type="checkbox"></span>
+        <h3>INE/IFE</h3>
+        <input class="normal" type="text" placeholder="Número">
+        <button>Registrar</button>
+      </form>
+    </div>
+  </div>
+  
+  
+  <script>
+      function changeprop(){
+          var isCheckedfem = document.getElementById('fem').checked;
+          var isCheckedmas = document.getElementById('mas').checked;
+          if(isCheckedfem == true){
+            document.getElementById('mas').checked = false;
+          }
+  
+          if(isCheckedmas == true){
+             document.getElementById('fem').checked = false;
+          }
+      }
+  </script>
+  

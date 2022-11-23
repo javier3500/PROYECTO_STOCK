@@ -1,0 +1,16 @@
+
+<p>Usuarios registrados</p>
+<table>
+  <thead>
+    <th>Nombre</th>
+    <th>Conectividad</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of Lista">
+      <td>{{usuario.nombreusuario}}</td>
+      <td>{{usuario.estado}}</td>
+      <td><button>Eliminar</button></td>
+    </tr>
+  </tbody>
+
+</table>

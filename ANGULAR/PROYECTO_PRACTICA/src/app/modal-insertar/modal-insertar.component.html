@@ -1,0 +1,41 @@
+  
+  <div class="ventana">
+
+    <div class="modal_marco">
+
+      <div class="margen">
+
+        <form action="">
+
+          <label for="">CODIGO DEL ARTICULO</label> <br>
+          <input [(ngModel)]= "crud.idarticulo" type="text" name="idarticulo" id="idarticulo" placeholder="insertar el codigo del articulo"><br>
+
+          <label for="">PRESENTACION</label> <br>
+          <input [(ngModel)]="crud.id_presentacion" type="text" name="id_presentacion" id="id_presentacion" placeholder="presentacion"><br>
+
+          <label for="">ARTICULO</label> <br>
+          <input [(ngModel)]="crud.producto" type="text" name="producto" id="producto" placeholder="insertar el nombre del articulo"><br>
+
+          <label for="">EXITENCIA</label> <br>
+          <input [(ngModel)]="crud.existencia" type="number" name="existencia" id="existencia" placeholder="Numero de articulos"><br>
+
+          <label for="">PRECIO DE VENTA </label> <br>
+          <input [(ngModel)]="crud.precioventa" type="number" name="precioventa" id="precioventa" placeholder="$00.00"><br>
+
+          <label for="">PRECIO DE COMPRA </label> <br>
+          <input [(ngModel)]="crud.preciocompra" type="number" name="preciocompra" id="preciocompra" placeholder="$00.00"><br>
+
+
+          <div class="container">
+          <button class="btn_cerrar" (click)="close_modal_insertar()"> CERRAR </button>
+          <button class="btn_insertar" (click)="insertar_modulo()"> INSERTAR </button>
+         
+        
+          </div>
+        </form> 
+
+      </div>
+      
+    </div>
+    
+  </div>
