@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CarritoComponent } from './carrito/carrito.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { MENUINCIOComponent } from './menu-incio/menu-incio.component';
-// import { MenuComponent } from './menu/menu.component';
 import { ModalInsertarComponent } from './modal-insertar/modal-insertar.component';
 import { ModalModificarComponent } from './modal-modificar/modal-modificar.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
+import { ListaBusquedaComponent } from './lista-busqueda/lista-busqueda.component';
 
 const routes: Routes = [
 
@@ -19,7 +19,8 @@ const routes: Routes = [
   {path: 'modal_insertar',component: ModalInsertarComponent},
   {path: 'modal_modificar/:id', component:ModalModificarComponent},
   {path:'usuario', component: UsuarioComponent},
-  {path:'empleado', component: EmpleadoComponent}
+  {path:'empleado', component: EmpleadoComponent},
+  {path:'lista_articulos', component:ListaBusquedaComponent}
 
 
 

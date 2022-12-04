@@ -20,6 +20,11 @@ export class ListaBusquedaComponent implements OnInit {
     this.listarCrud();
   }
 
+  close_lista_busqueda(){
+    this.Carga.$lista_articulos.emit(false);
+    //console.log("asdadawda")
+  }
+
   // captura el contenido de mi consulta 
   listarCrud()
   {
@@ -41,15 +46,16 @@ export class ListaBusquedaComponent implements OnInit {
     presentacion:string,
     preciocompra:string,
     precioventa:string){
-      
+      let i : number = -1
       //console.log(id_articulo)
-     this.Carga.disparador_de_lista.emit({
+      this.Carga.disparador_de_lista.emit({
+      
       idarticulo : id_articulo,
       producto :producto,
       existencia:existencia,
-      presentacion:presentacion,
+      precioventa:precioventa,
       preciocompra:preciocompra,
-      precioventa:precioventa
+      presentacion:presentacion
      })
 
      this.Carga.suma_de_valores.emit({

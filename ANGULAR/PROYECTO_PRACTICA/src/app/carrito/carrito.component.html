@@ -1,11 +1,13 @@
 <div style="margin-left:17%;padding:1px 16px;height:1000px;">
    
-
+ 
+  
   <div>
     <label for="">EL CODIGO DEL ARTICULO</label><br>
-    <input class="buscador" type="text" placeholder="INGRESA CODIGO DEL ARTICULO"><br>
-
-    <td><BUtton (click) = "open_modal_listar()"  >BUSCAR</BUtton></td>
+    <input  [(ngModel)]= "capturar_id_articulo" name = "capturar_id_articulo" id = "capturar_id_articulo" class="buscador" type="text" required >
+    <td><BUtton  (click) = "agregar_lista_consulta()"  >AGREGAR LISTA</BUtton></td>
+    <td><BUtton (click) = "open_modal_listar()">BUSCAR</BUtton></td>
+    
 
         <div class="" *ngIf="modal_lista_boton == true">
           <app-lista-busqueda></app-lista-busqueda> 
@@ -16,18 +18,23 @@
   <br><br><br>
   <table id="customers">
     <tr>
+      <th>#</th>
       <th>ID_ARTICULO</th>
       <th>ARTICULO</th>
       <th>UNIDADES</th>
       <th>presentacion</th>
       <th>PRECIO</th>
+      <th>ELIMINAR</th>
     </tr>
     <tr *ngFor = "let LISTA_DATOS of r">
+      <td ></td>
       <td> {{LISTA_DATOS.idarticulo}} </td>
       <td> {{LISTA_DATOS.producto}}</td>
       <td> {{LISTA_DATOS.existencia}}</td >
       <td> {{LISTA_DATOS.presentacion}}</td>
       <td> {{LISTA_DATOS.precioventa}}</td>
+      <td><BUtton (click) = "eliminar_articulo_lista(LISTA_DATOS.idarticulo,LISTA_DATOS.producto,LISTA_DATOS.existencia,
+        LISTA_DATOS.precioventa,LISTA_DATOS.preciocompra,LISTA_DATOS.presentacion)">Eliminar</BUtton></td>
     </tr>
     
   </table>

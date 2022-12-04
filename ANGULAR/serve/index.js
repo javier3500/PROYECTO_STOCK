@@ -21,6 +21,7 @@ try{
 }
 
 app.use('/carrito',require('./rutas_carrito'));
+app.use('/carrito_2',require('./rutas_carrito_2'));
 app.use('/usuarios',require('./router'));
 //app.use('/carrito',require('./rutas_carrito'));
 

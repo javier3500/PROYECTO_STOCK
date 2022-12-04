@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class CRUDService {
-
+  
   $modal_insertar = new EventEmitter <any>();
   $modal_lista = new EventEmitter <any>();
 
   url='/api/';
 
- // url_2= '/carrito/';
+ 
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +23,7 @@ export class CRUDService {
   {
     return this.http.get(this.url);
   }
+  
   mostrar_datos(id:string)
   {
     return this.http.get(this.url+'/'+id);

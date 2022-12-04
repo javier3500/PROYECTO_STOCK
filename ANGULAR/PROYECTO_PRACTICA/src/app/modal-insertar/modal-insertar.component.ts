@@ -30,6 +30,7 @@ export class ModalInsertarComponent implements OnInit {
 
   close_modal_insertar(){
     this.modalSS.$modal_insertar.emit(false);
+    console.log('CERRAR ')
   }
 
   insertar_modulo(){

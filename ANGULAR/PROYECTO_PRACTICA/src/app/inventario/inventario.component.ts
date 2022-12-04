@@ -31,7 +31,7 @@ export class InventarioComponent implements OnInit {
         console.log(this.ListarCrud)
       }
     );
-
+        console.log("asdawdawdawd")
   }
 
   eliminar(id:string){

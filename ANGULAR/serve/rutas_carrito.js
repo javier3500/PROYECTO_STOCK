@@ -2,61 +2,48 @@ const rutas = require('express').Router();
 const { Router } = require('express');
 const conexion = require('./configuracion/conexion');
 
-//asignaciones de todas las rutas
-/*
-rutas.get('/',function(req,res){
-    res.send('rutas de servicio')
-});
-*/
-
-// AGREGAR  `stock`
-
-
 rutas.post('/',(req, res) => {
-    const{id_articulo,producto,id_presentacion} = req.body
-    let sql = `insert into almacen (id_articulo,producto,id_presentacion) value ('${id_articulo}','${producto}','${id_presentacion}')`
-    conexion.query(sql,(err,rows,fields)=> {
-        if(err) throw err
-        else{
-            res.json({status: 'INSERCION EXITOSA'})
-        }
-        
-    })
+    const{idventa,vendido,fecha,hora} = req.body
+    let sql = `insert into ventas (idventa,vendido,fecha,hora) 
+    value 
+    ('${idventa}','${vendido}','${fecha}','${hora}')`
+
+    try{
+        conexion.query(sql,(err,rows,fields)=> {
+            try{
+                if(err) throw err
+                else{
+                    res.json({status: 'INSERCION EXITOSA'})
+                }
+            }catch(e){
+                console.log('ERROR EN LA INSERSION /// ' + e)
+            }
+            
+        })
+    }catch(e){
+        console.log('ERROR EN LA INSERSION')
+    }
+    
 })
-
-/*
-
-$sql1="SELECT * FROM almacen
-           LEFT JOIN
-           presentacion
-           ON
-           almacen.id_articulo = presentacion.id_presentacion;
-*/
-
-
-// MOSTRAR 
 
 rutas.get('/',(req, res) => {
-    let sql = `select * from presentacion`
-    conexion.query(sql,(err,rows,fields)=>{
+    
+    let sql = `SELECT count(idventa) as id_count FROM stock.ventas`
+    //let sql = `SELECT * FROM stock.ventas`
+    
+    conexion.query(sql,(err,rows)=>{
+
+    try{
         if (err) throw err;
-        else{
-            res.json(rows)
-        }
-        
+            else{
+                res.json(rows)
+            }
+        }catch(e){
+            console.log("ERROR EN LA BUSQUEDA DE INFORMACION /// " + e)
+    } 
     })
 })
-/*
-rutas.get('/',(req, res) => {
-    let sql = `select * from presentacion`
-    conexion.query(sql,(err,rows,fields)=>{
-        if (err) throw err;
-        else{
-            res.json(rows)
-        }
-        
-    })
-})
-*/
+
+
 module.exports = rutas;
 
