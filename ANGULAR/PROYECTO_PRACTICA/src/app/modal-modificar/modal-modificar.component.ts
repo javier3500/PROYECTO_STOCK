@@ -10,10 +10,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-modificar.component.css']
 })
 export class ModalModificarComponent implements OnInit {
+  
 
   //r:INVENTARIO[] | any;
   valor : string |any
 
+  
   actualizar : INVENTARIO = {
     idarticulo :'',
     producto :'',
@@ -28,7 +30,7 @@ export class ModalModificarComponent implements OnInit {
   constructor(private modalSS:CRUDService, private router : Router, private ACT_router : ActivatedRoute) { }
 
   ngOnInit(): void {
-   
+  
     const id_entrada = <string>this.ACT_router.snapshot.params['id'];
     
     if(id_entrada){
@@ -64,4 +66,7 @@ export class ModalModificarComponent implements OnInit {
   Cerrar_modal_modificar(){
     this.router.navigate(['/inventario_ventana/'])
   }
+
+  
+
 }

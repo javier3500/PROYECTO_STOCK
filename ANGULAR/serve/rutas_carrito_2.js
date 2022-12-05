@@ -48,4 +48,41 @@ rutas.put('/:id',(req,res) =>{
                 })
 })
 
+rutas.get('/',(req, res) => {
+    let sql = `SELECT count(idpresentacion) as id_pre FROM stock.presentacion`
+    conexion.query(sql,(err,rows)=>{
+    try{
+        if (err) throw err;
+            else{
+                res.json(rows)
+            }
+        }catch(e){
+            console.log("ERROR EN LA BUSQUEDA DE INFORMACION /// " + e)
+    } 
+    })
+})
+
+rutas.post('/',(req, res) => {
+    const{idpresentacion,presentacion} = req.body
+    let sql = `insert into stock.presentacion (idpresentacion,presentacion) values ('${idpresentacion}','${presentacion}')`
+
+    try{
+        conexion.query(sql,(err,rows,fields)=> {
+            try{
+                if(err) throw err
+                else{
+                    res.json({status: 'PRESENTACION INSERTADA'})
+                }
+            }catch(e){
+                console.log('ERROR EN LA INSERSION /// ' + e)
+            }
+            
+        })
+    }catch(e){
+        console.log('ERROR EN LA INSERSION')
+    }
+    
+})
+
+
 module.exports = rutas;

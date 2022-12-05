@@ -36,30 +36,26 @@ export class InventarioComponent implements OnInit {
   eliminar(id:string){
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Está seguro?',
+      text: "¡No podrás recuperar el articulo!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: '¡Sí, bórralo!'
     }).then((result) => {
       if (result.isConfirmed) {
         this.CRUDService.eliminar_articulo(id).subscribe(
           res => {
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              'ELIMINACION EXITOSA!',
+              'Su articulo ha sido eliminado.',
               'success'
             )
             this.listarCrud();
-          });
-
-        
+          })
       }
     })
-
-    
 
   }
 

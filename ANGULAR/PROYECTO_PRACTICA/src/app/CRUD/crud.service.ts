@@ -12,8 +12,7 @@ export class CRUDService {
   $modal_lista = new EventEmitter <any>();
 
   url='/api/';
-
- 
+  url_2= '/carrito_2/';
 
   constructor(private http: HttpClient) {}
 
@@ -48,6 +47,16 @@ export class CRUDService {
     return this.http.post(this.url,datos);
   }
 
+  N_presentacion()
+  {
+    return this.http.get(this.url_2);
+  }
+
+  agregar_presentacion(datos : presentacion){
+    return this.http.post(this.url_2,datos);
+  }
+  
+
 }
 
 // EXPORTA LOS DATOS RECOPILADOS PERMITE ENVIARLOS A OTRAS TABLAS.
@@ -61,6 +70,16 @@ export interface INVENTARIO {
   id_presentacion? :string;
   presentacion? :string;
   
+}
+
+export interface numero_presentacion {
+  id_pre?:number;
+  
+}
+
+export interface presentacion {
+  idpresentacion?:string;
+  presentacion?:string
 }
 
 

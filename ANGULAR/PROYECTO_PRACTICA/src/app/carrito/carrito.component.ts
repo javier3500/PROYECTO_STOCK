@@ -75,7 +75,8 @@ export class CarritoComponent implements OnInit {
    }
 
     ngOnInit(): void {
-      this.numero_registro()
+    
+    this.numero_registro()
     this.Carga.$lista_articulos.subscribe((valor)=> (this.modal_lista_boton = valor));
 
     
@@ -99,24 +100,25 @@ export class CarritoComponent implements OnInit {
   }
 
   numero_registro(){
-    this.Carga.getCrud().subscribe(
+  this.Carga.getCrud().subscribe(
       (data :any) => {
       this.id_venta = data
       this.N_regitro = this.id_venta[0]
       this.id_valor = this.N_regitro.id_count
       }
-    );
+  );
 
-    this.Carga.getCrud().subscribe(
+  this.Carga.getCrud().subscribe(
     (data :any) => {
     this.id_venta = data
     this.N_regitro = this.id_venta[0]
     this.id_valor = this.N_regitro.id_count
     this.id_valor++;
     this.id_final = 'venta'+ this.id_valor 
-  }
-);
-  }
+   }
+ );
+
+}
   FINALIZARVENTA()
   {
    this.numero_registro()

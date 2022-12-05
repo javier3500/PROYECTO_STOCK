@@ -11,7 +11,7 @@
           <input [(ngModel)]= "crud.idarticulo" type="text" name="idarticulo" id="idarticulo" placeholder="insertar el codigo del articulo"><br>
 
           <label for="">PRESENTACION</label> <br>
-          <input [(ngModel)]="crud.id_presentacion" type="text" name="id_presentacion" id="id_presentacion" placeholder="presentacion"><br>
+          <input [(ngModel)]="crud.presentacion" type="text" name="presentacion" id="presentacion" placeholder="presentacion"><br>
 
           <label for="">ARTICULO</label> <br>
           <input [(ngModel)]="crud.producto" type="text" name="producto" id="producto" placeholder="insertar el nombre del articulo"><br>
@@ -29,6 +29,7 @@
           <div class="container">
           <button class="btn_cerrar" (click)="close_modal_insertar()"> CERRAR </button>
           <button class="btn_insertar" (click)="insertar_modulo()"> INSERTAR </button>
+          <button class="btn_insertar" (click)="mostrar()"> mostrar </button>
          
         
           </div>
