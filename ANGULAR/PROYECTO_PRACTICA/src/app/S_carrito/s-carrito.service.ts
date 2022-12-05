@@ -39,15 +39,10 @@ export class SCarritoService {
     return this.http.get(this.url_2+'/'+id);
   }
 
- 
-
-  
-
+  editar_articulo(id:string,datos : exitencia ){
+    return this.http.put(this.url_2+'/'+id,datos);
+  }
 }
-
-
-
-
 
 export interface LISTA_DATOS {
   
@@ -60,7 +55,6 @@ export interface LISTA_DATOS {
   
   
 }
-
 export interface LISTA_DATOS_2 {
   
   idarticulo? :string;
@@ -68,27 +62,28 @@ export interface LISTA_DATOS_2 {
   existencia? : number;
   precioventa? :number;
   preciocompra? :number;
-  
   presentacion? :string;
   
 }
-
 export interface cantidades {
   existencia? : number;
 }
-
 export interface total {
   existencia? : number;
 }
-
-
 export interface VENTA {
   idventa? :string;
   vendido? : number;
   fecha? :string;
   hora? :string;
 }
-
 export interface numero_ventas {
   id_count?:number
+}
+export interface numero_articulos {
+  idarticulo? :string | any;
+  existencia?:number | any;
+}
+export interface exitencia{
+  existencia?:number | any;
 }

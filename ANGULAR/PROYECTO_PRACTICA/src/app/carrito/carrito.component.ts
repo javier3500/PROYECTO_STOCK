@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { timer } from 'rxjs';
-import { SCarritoService,LISTA_DATOS,total,VENTA,numero_ventas,LISTA_DATOS_2} from '../S_carrito/s-carrito.service';
+import Swal from 'sweetalert2';
+import { SCarritoService,LISTA_DATOS,total,VENTA,numero_ventas,LISTA_DATOS_2,numero_articulos,exitencia} from '../S_carrito/s-carrito.service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
+
+
+
 export class CarritoComponent implements OnInit {
   capturar_id_articulo: string | any = ''
   modal_lista_boton:boolean = false;
@@ -14,7 +17,6 @@ export class CarritoComponent implements OnInit {
   total : any | number = 0
   id_final :any | string
   num_1 : any | number = 0
-  //resultado : any | number = 0
   indice : any | number = 0
   public arreglo : Array<any> =[];
   public arreglo_2 : Array<any> =[];
@@ -24,21 +26,17 @@ export class CarritoComponent implements OnInit {
   public id_venta : Array<any> =[];
   r:LISTA_DATOS[] | any;
 
- 
-
-    actualizar : LISTA_DATOS = {
-
+  N_articulos : numero_articulos = {
     idarticulo :'',
-    producto :'',
-    existencia:0,
-    precioventa :0,
-    preciocompra :0,
-    presentacion :'',
-    
+    existencia:0
+  };
+
+  N_articulos_actualizar : exitencia = {
+  
+    existencia:0
   };
 
   lista : LISTA_DATOS = {
-    
     idarticulo :'',
     producto :'',
     existencia:0,
@@ -48,7 +46,6 @@ export class CarritoComponent implements OnInit {
   };
 
   lista_2 : LISTA_DATOS_2 = {
-    
     idarticulo :'',
     producto :'',
     existencia:0,
@@ -69,7 +66,13 @@ export class CarritoComponent implements OnInit {
    N_regitro: numero_ventas= {
     id_count:0
   }
-  constructor(private router : Router,private Carga :SCarritoService) { }
+
+  
+ 
+  constructor(private router : Router,private Carga :SCarritoService) {
+
+  
+   }
 
     ngOnInit(): void {
       this.numero_registro()
@@ -78,7 +81,6 @@ export class CarritoComponent implements OnInit {
     
     this.Carga.disparador_de_lista.subscribe(
       (data: any) => {
-        console.log(data)
         this.arreglo.push(data)
         this.r =this.arreglo;
         console.log(this.r)
@@ -87,13 +89,11 @@ export class CarritoComponent implements OnInit {
 
     this.Carga.suma_de_valores.subscribe(
         (data : any) => {
-        //console.log(data)
         this.suma.push(data)
         this.indice = this.suma.length
         let i = this.Carga.contador(this.indice)
         this.total_cantidad = this.suma[i]
         this.total = this.total + this.total_cantidad.existencia
-        //console.log("total es = "+this.total)
     })
 
   }
@@ -103,34 +103,24 @@ export class CarritoComponent implements OnInit {
       (data :any) => {
       this.id_venta = data
       this.N_regitro = this.id_venta[0]
-      //console.log()
       this.id_valor = this.N_regitro.id_count
-      //console.log("paso 1 : "+this.id_valor)
-      //console.log(this.id_final)
-      
       }
     );
 
     this.Carga.getCrud().subscribe(
-   (data :any) => {
+    (data :any) => {
     this.id_venta = data
     this.N_regitro = this.id_venta[0]
-    //console.log()
     this.id_valor = this.N_regitro.id_count
     this.id_valor++;
-    //console.log("paso 2 : " +this.id_valor)
     this.id_final = 'venta'+ this.id_valor 
-    //console.log(this.id_final)
-  
   }
 );
   }
-  mostrar()
+  FINALIZARVENTA()
   {
-    
    this.numero_registro()
     let fecha : Date = new Date();
-    
     let separador: string = '/'
     let hora = fecha.toLocaleTimeString();
     let cadena_2 = ''
@@ -151,34 +141,48 @@ export class CarritoComponent implements OnInit {
     this.Venta_activa.vendido = this.total
     this.Venta_activa.hora = hora
     this.Venta_activa.fecha = cadena_3
-    console.log(this.Venta_activa)
     try{
       this.Carga.Registrar_venta(this.Venta_activa).subscribe(
         res=>{
          console.log(res);
-        }
+        }, err => 
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        })
       );
       }catch (e){
         console.log("CONSULTA ERROENEA")
       }
+
+      this.actualizar_existencias()
+    
+      Swal.fire({
+        icon: 'success',
+        title: 'GRACIAS POR SU COMPRA',
+        text: 'VUELVA PRONTO',
+        timer: 2000
+      })
   }
 
+//listo
     agregar_lista_consulta(){
-      console.log(this.capturar_id_articulo)
       this.Carga.Recopilar_articulo(this.capturar_id_articulo).subscribe(
         (data : any) => {
-        console.log(data[0])
         this.lista = data[0]
         this.total = this.total + this.lista.existencia
         this.arreglo.push(data[0])
         this.r =this.arreglo;
-        console.log(this.arreglo)
-      })
+      },
+      )
     }
-
+//listo
     open_modal_listar(){
     this.modal_lista_boton = true;
   }
+
+
 
   eliminar_articulo_lista(idarticulo:string,producto:string,existencia:number,precioventa:number
     , preciocompra:number,presentacion:string){
@@ -210,17 +214,35 @@ export class CarritoComponent implements OnInit {
       i++
     }
   }
-}
 
 
-    /*
-      console.log(this.variables)
-      for(let i = 0; i<this.suma.length; i++)
-      {
-      this.variables = this.suma[i]
-      console.log("TOTAL ES = " + this.variables.existencia)
-      this.total = this.total + this.variables.existencia
+//listo
+  actualizar_existencias(){
+    let indice,indice_2, valor_1 : number = 0 
+    let id_articulo : string = ''
+    indice = this.arreglo.length
+    indice_2 = this.suma.length
+    while(indice > 0){
+    this.N_articulos=this.arreglo.pop()
+    id_articulo = this.N_articulos.idarticulo
+    valor_1 = this.N_articulos.existencia - 1
+    this.N_articulos_actualizar.existencia = valor_1
+
+    this.Carga.editar_articulo(id_articulo,this.N_articulos_actualizar).subscribe(
+      res => {
+       console.log(res)
+      },
+      err => console.log(err)
+     )
+    indice--
+    }
+// VACIA LA SUMA TOTAL  
+    while(indice_2 > 0){
+      this.suma.pop()
+      indice_2--
       }
-      console.log("TOTAL ES = " + this.total)
-      //this.total_cantidad.existencia = this.total
-      */
+      this.total = 0
+  }
+
+
+}

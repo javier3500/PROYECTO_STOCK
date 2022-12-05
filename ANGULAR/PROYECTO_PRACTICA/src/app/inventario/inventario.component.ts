@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CRUDService,INVENTARIO} from '../CRUD/crud.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inventario',
@@ -26,20 +27,39 @@ export class InventarioComponent implements OnInit {
   {
     this.CRUDService.getCrud().subscribe(
       res => {
-      
         this.ListarCrud =res;
         console.log(this.ListarCrud)
       }
     );
-        console.log("asdawdawdawd")
   }
 
   eliminar(id:string){
-    this.CRUDService.eliminar_articulo(id).subscribe(
-      res => {
-        console.log('Articulo eliminado'+ ' = ' +id );
-        this.listarCrud();
-      });
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.CRUDService.eliminar_articulo(id).subscribe(
+          res => {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+            this.listarCrud();
+          });
+
+        
+      }
+    })
+
+    
 
   }
 
@@ -47,7 +67,6 @@ export class InventarioComponent implements OnInit {
   
    modificar(id:string){
      this.router.navigate(['/modal_modificar/'+id])
-   
    }
 
    open_modal_insertar(){

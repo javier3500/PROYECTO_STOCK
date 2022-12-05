@@ -6,7 +6,7 @@ const conexion = require('./configuracion/conexion');
 
 rutas.post('/',(req, res) => {
     const{idarticulo,producto,existencia,precioventa,preciocompra,id_presentacion} = req.body
-    let sql = `insert into almacen (idarticulo,producto,existencia,precioventa,preciocompra,id_presentacion) 
+    let sql = `insert into almacen (idarticulo,producto,existencia,precioventa,preciocompra,idpresentacion) 
     value 
     ('${idarticulo}','${producto}','${existencia}','${precioventa}','${preciocompra}','${id_presentacion}')`
 
@@ -36,7 +36,7 @@ rutas.get('/',(req, res) => {
     LEFT JOIN
     presentacion
     ON
-    almacen.id_presentacion = presentacion.id_presentacion`
+    almacen.idpresentacion = presentacion.idpresentacion`
     conexion.query(sql,(err,rows,fields)=>{
 
     try{
@@ -60,7 +60,7 @@ rutas.get('/:id',(req, res) => {
     LEFT JOIN
     presentacion
     ON
-    almacen.id_presentacion = presentacion.id_presentacion 
+    almacen.idpresentacion = presentacion.idpresentacion 
     where idarticulo = ?` 
     conexion.query(sql,[id],(err,rows,fields)=>{
 

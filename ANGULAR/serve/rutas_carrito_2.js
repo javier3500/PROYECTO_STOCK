@@ -8,7 +8,7 @@ rutas.get('/:id',(req, res) => {
     LEFT JOIN
     stock.presentacion
     ON
-    almacen.id_presentacion = presentacion.id_presentacion 
+    almacen.idpresentacion = presentacion.idpresentacion 
     where idarticulo = ?` 
     conexion.query(sql,[id],(err,rows,fields)=>{
 
@@ -24,6 +24,28 @@ rutas.get('/:id',(req, res) => {
        
         
     })
+})
+
+rutas.put('/:id',(req,res) =>{
+    const {id} = req.params
+    const {existencia} = req.body
+    
+    let sql =   `update almacen set 
+                 
+                 existencia= '${existencia}' 
+                 where idarticulo = '${id}' `
+                 conexion.query(sql,[id],(err,rows,fields)=> {
+
+                    try{
+                        if (err) throw err
+                    else{
+                        res.json({status: 'articulo modificado'})
+                    }
+                    }catch(e){
+                        console.log("ERROR EN LA ACTUALIZACION DE LOS DATOS /// " + e)
+                    }
+                    
+                })
 })
 
 module.exports = rutas;

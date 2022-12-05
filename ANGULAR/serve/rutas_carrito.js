@@ -27,12 +27,9 @@ rutas.post('/',(req, res) => {
 })
 
 rutas.get('/',(req, res) => {
-    
     let sql = `SELECT count(idventa) as id_count FROM stock.ventas`
     //let sql = `SELECT * FROM stock.ventas`
-    
     conexion.query(sql,(err,rows)=>{
-
     try{
         if (err) throw err;
             else{
@@ -43,7 +40,5 @@ rutas.get('/',(req, res) => {
     } 
     })
 })
-
-
 module.exports = rutas;
 

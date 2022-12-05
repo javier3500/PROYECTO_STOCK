@@ -18,7 +18,7 @@
   <br><br><br>
   <table id="customers">
     <tr>
-      <th>#</th>
+     
       <th>ID_ARTICULO</th>
       <th>ARTICULO</th>
       <th>UNIDADES</th>
@@ -27,7 +27,7 @@
       <th>ELIMINAR</th>
     </tr>
     <tr *ngFor = "let LISTA_DATOS of r">
-      <td ></td>
+      
       <td> {{LISTA_DATOS.idarticulo}} </td>
       <td> {{LISTA_DATOS.producto}}</td>
       <td> {{LISTA_DATOS.existencia}}</td >
@@ -41,7 +41,8 @@
   <div>
     <input class="buscador" [(ngModel)]="total" type="number" name="total" id="total" placeholder="$00.00"><br>
     <br>
-    <button (click)="mostrar()">FINALIZAR</button>
+    <button (click)="FINALIZARVENTA()">FINALIZAR</button>
+    <button (click)="actualizar_existencias()">MOSTRAR</button>
   </div>
   </div>
   

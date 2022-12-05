@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CRUDService, INVENTARIO} from '../CRUD/crud.service';
-
+import Swal from 'sweetalert2';
 import { InventarioComponent } from '../inventario/inventario.component'; 
 
 @Component({
@@ -30,7 +30,6 @@ export class ModalInsertarComponent implements OnInit {
 
   close_modal_insertar(){
     this.modalSS.$modal_insertar.emit(false);
-    console.log('CERRAR ')
   }
 
   insertar_modulo(){
@@ -40,8 +39,18 @@ export class ModalInsertarComponent implements OnInit {
     
     this.modalSS.insertar_articulo(this.crud).subscribe(
       res=>{
-        console.log(res);
-      }
+        Swal.fire({
+          icon: 'success',
+          title: 'ARTICULO INVENTARIADO',
+          text: 'GRACIAS VUELVA PRONTO',
+          timer: 2000
+        })
+      }, err => 
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err,
+      })
     );
     
     this.claseinvetario.listarCrud();
