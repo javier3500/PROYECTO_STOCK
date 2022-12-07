@@ -45,11 +45,11 @@ export class SCarritoService {
 }
 
 export interface LISTA_DATOS {
-  
+  //indice_tabla?: number
   idarticulo? :string;
   producto? :string;  
-  existencia? : number;
-  precioventa? :number;
+  existencia? : number | any;
+  precioventa? :number | any;
   preciocompra? :number;
   presentacion? :string;
   
@@ -69,7 +69,7 @@ export interface cantidades {
   existencia? : number;
 }
 export interface total {
-  existencia? : number;
+  precioventa? : number;
 }
 export interface VENTA {
   idventa? :string;

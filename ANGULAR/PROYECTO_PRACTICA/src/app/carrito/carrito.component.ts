@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js';
 import { SCarritoService,LISTA_DATOS,total,VENTA,numero_ventas,LISTA_DATOS_2,numero_articulos,exitencia} from '../S_carrito/s-carrito.service';
 @Component({
   selector: 'app-carrito',
@@ -11,6 +12,8 @@ import { SCarritoService,LISTA_DATOS,total,VENTA,numero_ventas,LISTA_DATOS_2,num
 
 
 export class CarritoComponent implements OnInit {
+  fecha_documento : Date = new Date();
+  indice_tabla : number = 0
   capturar_id_articulo: string | any = ''
   modal_lista_boton:boolean = false;
   id_valor :any | number 
@@ -18,9 +21,19 @@ export class CarritoComponent implements OnInit {
   id_final :any | string
   num_1 : any | number = 0
   indice : any | number = 0
-  public arreglo : Array<any> =[];
+  public arreglo : Array<any> =[{
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  }];
   public arreglo_2 : Array<any> =[];
+
   public arreglo_3 : Array<any> =[];
+
+  public arreglo_4 : Array<any> =[];
   
   public suma : Array<any> =[];
   public id_venta : Array<any> =[];
@@ -53,9 +66,18 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
+  
+  restar_total : LISTA_DATOS = {
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  };
 
     total_cantidad : total = {
-    existencia: 0
+      precioventa: 0
   };
     Venta_activa: VENTA = {
     idventa :'',
@@ -84,7 +106,7 @@ export class CarritoComponent implements OnInit {
       (data: any) => {
         this.arreglo.push(data)
         this.r =this.arreglo;
-        console.log(this.r)
+      
       }
     )
 
@@ -94,11 +116,11 @@ export class CarritoComponent implements OnInit {
         this.indice = this.suma.length
         let i = this.Carga.contador(this.indice)
         this.total_cantidad = this.suma[i]
-        this.total = this.total + this.total_cantidad.existencia
+        this.total = this.total + this.total_cantidad.precioventa
     })
 
   }
-
+//listo terminado
   numero_registro(){
   this.Carga.getCrud().subscribe(
       (data :any) => {
@@ -119,6 +141,7 @@ export class CarritoComponent implements OnInit {
  );
 
 }
+//listo terminado
   FINALIZARVENTA()
   {
    this.numero_registro()
@@ -168,57 +191,74 @@ export class CarritoComponent implements OnInit {
       })
   }
 
-//listo
+//listo terminado
     agregar_lista_consulta(){
       this.Carga.Recopilar_articulo(this.capturar_id_articulo).subscribe(
         (data : any) => {
         this.lista = data[0]
-        this.total = this.total + this.lista.existencia
+        this.total = this.total + this.lista.precioventa
         this.arreglo.push(data[0])
         this.r =this.arreglo;
       },
       )
     }
-//listo
+//listo terminado
     open_modal_listar(){
     this.modal_lista_boton = true;
   }
 
 
-
-  eliminar_articulo_lista(idarticulo:string,producto:string,existencia:number,precioventa:number
-    , preciocompra:number,presentacion:string){
-    console.log(this.num_1)
-    let listado : Array<any> |any
-    this.lista_2.idarticulo = idarticulo
-    this.lista_2.producto = producto
-    this.lista_2.existencia = existencia
-    this.lista_2.presentacion = presentacion
-    this.lista_2.preciocompra = preciocompra
-    this.lista_2.precioventa = precioventa
-    this.arreglo_3[0]= this.lista_2
-    console.log(this.arreglo_3[0])
+//listo terminado
+  eliminar_articulo_lista(idarticulo:string){
+      let i : number=0
     
-    let index = this.arreglo.indexOf(this.arreglo[0])
-    console.log(index)
-    console.log(this.arreglo_2=this.arreglo.slice(index,index+1))
-    console.log(this.arreglo_2.length)
-    console.log(this.arreglo.length)
-    if(this.arreglo_3[0] === this.arreglo[0]){
-      console.log('si')
-    }else{
-      console.log('no')
-    }
-    let i : number = 0
     while(i<this.arreglo.length){
-      //console.log(i)
-      //console.log(this.arreglo[i])
+    this.lista_2 = this.arreglo[i]
+    this.arreglo_3[i] = this.lista_2
       i++
     }
+    const valor = this.arreglo_3.find(Element =>{
+      return Element.idarticulo === idarticulo
+    })
+
+    let t : number = this.arreglo.length -1
+    let variable : number = 0
+    let index: number = this.arreglo.indexOf(valor)
+    while(t > -1){
+    
+     if(index <= t){
+      if(index == t){
+        console.log(" index = "+index + " indice =  "+ t)
+        console.log("ELIMINA VALOR")
+        this.restar_total=this.arreglo.pop()
+        this.total = this.total - this.restar_total.precioventa
+      }else{
+        console.log(" index = "+index + " indice =  "+ t)
+        console.log("GUARDA VALOR")
+        this.arreglo_2[variable]= this.arreglo.pop()
+        variable++
+      }     
+    }
+        t--
+    }
+    let indice_final : number = 0
+    let indice_final_3 : number = this.arreglo_2.length
+    while(indice_final < indice_final_3){
+      console.log( "------> "+indice_final) 
+      this.arreglo.push(this.arreglo_2.pop())
+      indice_final++
+    }
+    let limpiar : number = 0
+    let limpiar_2 : number = this.arreglo_3.length
+    while(limpiar < limpiar_2){
+           this.arreglo_3.pop()
+           console.log(this.arreglo_3)
+         limpiar++
+       }
   }
 
 
-//listo
+//listo terminado
   actualizar_existencias(){
     let indice,indice_2, valor_1 : number = 0 
     let id_articulo : string = ''
@@ -246,5 +286,22 @@ export class CarritoComponent implements OnInit {
       this.total = 0
   }
 
+  btnCrearPdf(){
+    var pdf = {
+      margin:1,
+      filename: this.fecha_documento.toLocaleDateString()+'/'+this.fecha_documento.toLocaleTimeString()+'_.pdf'+'.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+     
+    }
+
+    var element = document.getElementById('creacion_pdf')
+
+    html2pdf()
+      .from(element)
+      .set(pdf)
+      .save();
+  }
 
 }

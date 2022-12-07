@@ -100,6 +100,7 @@ export class ModalInsertarComponent implements OnInit {
     
     this.modalSS.N_presentacion().subscribe(
         (data :any) => {
+          console.log(data)
         this.id_venta = data
         this.N_regitro = this.id_venta[0]
         this.id_valor = this.N_regitro.id_pre

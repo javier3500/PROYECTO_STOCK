@@ -1,8 +1,13 @@
 <div style="margin-left:17%;padding:1px 16px;height:1000px;">
    
- 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   
-  <div>
+    
     <label for="">EL CODIGO DEL ARTICULO</label><br>
     <input  [(ngModel)]= "capturar_id_articulo" name = "capturar_id_articulo" id = "capturar_id_articulo" class="buscador" type="text" required >
     <td><BUtton  (click) = "agregar_lista_consulta()"  >AGREGAR LISTA</BUtton></td>
@@ -14,11 +19,11 @@
         </div>
 
    
-  </div>
+  
   <br><br><br>
+  <div id="creacion_pdf">
   <table id="customers">
     <tr>
-     
       <th>ID_ARTICULO</th>
       <th>ARTICULO</th>
       <th>UNIDADES</th>
@@ -27,22 +32,22 @@
       <th>ELIMINAR</th>
     </tr>
     <tr *ngFor = "let LISTA_DATOS of r">
-      
       <td> {{LISTA_DATOS.idarticulo}} </td>
       <td> {{LISTA_DATOS.producto}}</td>
       <td> {{LISTA_DATOS.existencia}}</td >
       <td> {{LISTA_DATOS.presentacion}}</td>
       <td> {{LISTA_DATOS.precioventa}}</td>
-      <td><BUtton (click) = "eliminar_articulo_lista(LISTA_DATOS.idarticulo,LISTA_DATOS.producto,LISTA_DATOS.existencia,
-        LISTA_DATOS.precioventa,LISTA_DATOS.preciocompra,LISTA_DATOS.presentacion)">Eliminar</BUtton></td>
+      <td><BUtton (click) = "eliminar_articulo_lista(LISTA_DATOS.idarticulo)">Eliminar</BUtton></td>
     </tr>
     
   </table>
-  <div>
+    <span for="">TOTAL DE LA VENTA = </span>
     <input class="buscador" [(ngModel)]="total" type="number" name="total" id="total" placeholder="$00.00" readonly ><br>
     <br>
-    <button (click)="FINALIZARVENTA()">FINALIZAR</button>
-    <button (click)="actualizar_existencias()">MOSTRAR</button>
   </div>
+    <button (click) = "FINALIZARVENTA()">FINALIZAR</button>
+    <button  (click) = "btnCrearPdf()"  >exportar</button>
+    
+
   </div>
   

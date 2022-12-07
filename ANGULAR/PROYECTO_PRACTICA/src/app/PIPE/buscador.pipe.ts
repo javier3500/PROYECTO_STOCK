@@ -12,7 +12,7 @@ export class BuscadorPipe implements PipeTransform {
 
   transform(value: any, arg: any): any {
     if (arg === '' || arg.length < 1) return value;
-    const resultPosts = [];
+    const resultPosts : any = [];
     for (const post of value) {
       if (post.producto.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
         resultPosts.push(post);

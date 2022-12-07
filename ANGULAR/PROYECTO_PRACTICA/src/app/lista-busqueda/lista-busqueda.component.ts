@@ -59,7 +59,7 @@ export class ListaBusquedaComponent implements OnInit {
      })
 
      this.Carga.suma_de_valores.emit({
-      existencia:existencia
+      precioventa:precioventa
      })
       
 
