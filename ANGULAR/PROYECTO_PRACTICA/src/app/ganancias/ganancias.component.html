@@ -1,0 +1,54 @@
+<div id="contenedor">
+    <div id="opciones">
+        <button id="eliminar">Eliminar</button>
+        <button id="exportar">Exportar</button>
+        <button id="historial">Historial<i class="fa-solid fa-house"></i></button>
+    </div>
+    <div id="tiempo_real">
+    <h3>Reporte en tiempo real</h3>
+    <table>
+        <tr>
+            <td>Artículo</td>
+            <td>Precio</td>
+            <td>Cantidad vendida</td>
+            <td>Ganancia</td>
+            <td>Día</td>
+            <td>Mes</td>
+            <td>Incluir</td>
+        </tr>
+        <tr *ngFor="let INVENTARIO of ListarCrud">
+            <td>{{INVENTARIO.producto}}</td>
+            <td>{{INVENTARIO.precioventa}}</td>
+            <td>{{INVENTARIO.existencia}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="checkbox"></td>
+        </tr>
+    </table>
+    
+    </div>
+    
+    <div id="reporte_impreso">
+        <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> 
+    <h3>Reporte impreso</h3>
+    <table>
+        <tr>
+            <td>Artículo</td>
+            <td>Precio</td>
+            <td>Cantidad vendida</td>
+            <td>Ganancia</td>
+            <td>Día</td>
+            <td>Mes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+</div>

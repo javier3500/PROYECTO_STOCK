@@ -106,6 +106,7 @@ export class CarritoComponent implements OnInit {
       (data: any) => {
         this.arreglo.push(data)
         this.r =this.arreglo;
+        console.log(this.r)
       
       }
     )

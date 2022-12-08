@@ -9,6 +9,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { ListaBusquedaComponent } from './lista-busqueda/lista-busqueda.component';
+import { GananciasComponent } from './ganancias/ganancias.component';
 
 const routes: Routes = [
 
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'modal_modificar/:id', component:ModalModificarComponent},
   {path:'usuario', component: UsuarioComponent},
   {path:'empleado', component: EmpleadoComponent},
-  {path:'lista_articulos', component:ListaBusquedaComponent}
+  {path:'lista_articulos', component:ListaBusquedaComponent},
+  {path:'ganancias', component:GananciasComponent}
 
 
 

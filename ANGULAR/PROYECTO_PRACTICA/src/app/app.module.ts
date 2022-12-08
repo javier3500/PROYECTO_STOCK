@@ -19,6 +19,7 @@ import { ListaBusquedaComponent } from './lista-busqueda/lista-busqueda.componen
 import { UsuarioComponent } from './usuario/usuario.component';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
+import { GananciasComponent } from './ganancias/ganancias.component';
 
 
 
@@ -38,6 +39,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
     UsuarioComponent,
     VerUsuarioComponent,
     EmpleadoComponent,
+    GananciasComponent,
     
   ],
   imports: [
