@@ -20,6 +20,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { GananciasComponent } from './ganancias/ganancias.component';
+import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.component';
 
 
 
@@ -40,6 +41,7 @@ import { GananciasComponent } from './ganancias/ganancias.component';
     VerUsuarioComponent,
     EmpleadoComponent,
     GananciasComponent,
+    GananciasListoComponent,
     
   ],
   imports: [

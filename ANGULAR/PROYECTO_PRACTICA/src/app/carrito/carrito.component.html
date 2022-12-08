@@ -29,6 +29,7 @@
       <th>UNIDADES</th>
       <th>presentacion</th>
       <th>PRECIO</th>
+      <th>COSTO</th>
       <th>ELIMINAR</th>
     </tr>
     <tr *ngFor = "let LISTA_DATOS of r">
@@ -37,6 +38,7 @@
       <td> {{LISTA_DATOS.existencia}}</td >
       <td> {{LISTA_DATOS.presentacion}}</td>
       <td> {{LISTA_DATOS.precioventa}}</td>
+      <td> {{LISTA_DATOS.preciocompra}}</td>
       <td><BUtton (click) = "eliminar_articulo_lista(LISTA_DATOS.idarticulo)">Eliminar</BUtton></td>
     </tr>
     
@@ -44,10 +46,9 @@
     <span for="">TOTAL DE LA VENTA = </span>
     <input class="buscador" [(ngModel)]="total" type="number" name="total" id="total" placeholder="$00.00" readonly ><br>
     <br>
+    <input class="buscador" [(ngModel)]="total_costo" type="number" name="total_costo" id="total_costo" placeholder="$00.00" readonly ><br>
   </div>
     <button (click) = "FINALIZARVENTA()">FINALIZAR</button>
     <button  (click) = "btnCrearPdf()"  >exportar</button>
-    
-
   </div>
   

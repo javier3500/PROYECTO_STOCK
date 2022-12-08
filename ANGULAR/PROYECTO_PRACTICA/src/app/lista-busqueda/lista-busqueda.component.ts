@@ -46,10 +46,8 @@ export class ListaBusquedaComponent implements OnInit {
     presentacion:string,
     preciocompra:string,
     precioventa:string){
-      let i : number = -1
-      //console.log(id_articulo)
+    
       this.Carga.disparador_de_lista.emit({
-      
       idarticulo : id_articulo,
       producto :producto,
       existencia:existencia,
@@ -60,6 +58,10 @@ export class ListaBusquedaComponent implements OnInit {
 
      this.Carga.suma_de_valores.emit({
       precioventa:precioventa
+     })
+
+     this.Carga.suma_de_costo.emit({
+      preciocompra:preciocompra
      })
       
 

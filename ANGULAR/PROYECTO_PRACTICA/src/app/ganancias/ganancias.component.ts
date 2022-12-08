@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CRUDService, INVENTARIO} from '../CRUD/crud.service'; //importamos el código del servicio CRUD
-import {Utilidad} from '../gananciaService/ganancia-service.service'  //importamos la interface para la utilidad
+import {GananciaServicioService,LISTA_DATOS,LISTA_DATOS_2} from '../gananciaService/ganancia-service.service'  //importamos la interface para la utilidad
 import { Router } from '@angular/router';
-
+import * as html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-ganancias',
   templateUrl: './ganancias.component.html',
@@ -10,33 +9,72 @@ import { Router } from '@angular/router';
 })
 
 export class GananciasComponent implements OnInit {
-  ListarCrud : INVENTARIO[] | any; //se define un objeto para listar los elemenetos de las columnas
-  utilidad : number = this.obtenerUtilidad(); //variable que recibirá el valor total de la utilidad
-
-  definirUtilidad : Utilidad = {  //definimos las variables que utilizaremos
-    unidades : 0,
-    precioVenta : 0,
-    preciocompra : 0
-  }
-
-  constructor(private CRUDService: CRUDService, private router :Router) { } //importamos la clase del servicio
+  r:LISTA_DATOS[] | any;
+  r_2:LISTA_DATOS_2[] | any;
+  fecha_documento : Date = new Date();
+  public arreglo : Array<any> =[];
+  public arreglo_2 : Array<any> =[];
+  valor : number = 0
+  constructor( private objeto_ganancias : GananciaServicioService ,private router :Router) { } //importamos la clase del servicio
 
   ngOnInit(): void {
-    this.listarCrud();
-    this.obtenerUtilidad(); //hacemos que nuestra función se cargue en el programa al abrirlo
+   
+    
+    this.objeto_ganancias.disparador_de_lista.subscribe(
+      (data:any)=>{
+        this.arreglo_2.push(data)
+        this.r_2=this.arreglo_2
+     })
   }
 
-  //función para hacer select en la base de datos 
-  listarCrud(){ 
-    this.CRUDService.getCrud().subscribe(
-      res => {  
-        this.ListarCrud = res;
-        console.log(this.ListarCrud)
+  lista_ganancias(){
+    let bandera : boolean = true
+    let contador:number = 0
+    this.objeto_ganancias.mostrar_datos().subscribe(
+      (data:any) => {
+      
+    while(bandera){
+      if(data[contador]== null){
+        bandera = false
+      }else{
+        this.arreglo[contador] = data[contador]
       }
-    );
+      contador++
+    }
+    this.r=data
+    })
   }
 
-  obtenerUtilidad(){
-    return 0
+  eliminar_lista(){
+    this.arreglo_2.pop()
+  }
+
+  btnCrearPdf(){
+    var pdf = {
+      margin:1,
+      filename: this.fecha_documento.toLocaleDateString()+'/'+this.fecha_documento.toLocaleTimeString()+'_.pdf'+'.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+     
+    }
+
+    var element = document.getElementById('reporte_impreso')
+
+    html2pdf()
+      .from(element)
+      .set(pdf)
+      .save();
+
+    
+  }
+  
+  limpiar_arregle(){
+    let i : number = 0
+    let i_2 : number = this.arreglo_2.length
+    while(i < i_2){
+      this.arreglo_2.pop()
+      i++
+    }    
   }
 }

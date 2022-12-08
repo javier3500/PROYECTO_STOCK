@@ -42,3 +42,7 @@
   padding-left: 10px;
   opacity: .5;
   }
+  form{
+    border: solid;
+    border-radius: 8px;
+  }

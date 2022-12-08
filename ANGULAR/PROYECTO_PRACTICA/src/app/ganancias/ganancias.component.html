@@ -1,53 +1,35 @@
 <div id="contenedor">
     <div id="opciones">
-        <button id="eliminar">Eliminar</button>
-        <button id="exportar">Exportar</button>
-        <button id="historial">Historial<i class="fa-solid fa-house"></i></button>
+        <button id="eliminar" (click)="eliminar_lista()">Eliminar</button>
+        <button id="exportar" (click)="btnCrearPdf()">Exportar</button>
+      
     </div>
-    <div id="tiempo_real">
-    <h3>Reporte en tiempo real</h3>
-    <table>
-        <tr>
-            <td>Artículo</td>
-            <td>Precio</td>
-            <td>Cantidad vendida</td>
-            <td>Ganancia</td>
-            <td>Día</td>
-            <td>Mes</td>
-            <td>Incluir</td>
-        </tr>
-        <tr *ngFor="let INVENTARIO of ListarCrud">
-            <td>{{INVENTARIO.producto}}</td>
-            <td>{{INVENTARIO.precioventa}}</td>
-            <td>{{INVENTARIO.existencia}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type="checkbox"></td>
-        </tr>
-    </table>
-    
-    </div>
+        <div id="tiempo_real">
+            <app-ganancias-listo> </app-ganancias-listo>
+        </div>
     
     <div id="reporte_impreso">
-        <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> 
+        <br> <br> 
     <h3>Reporte impreso</h3>
     <table>
         <tr>
-            <td>Artículo</td>
-            <td>Precio</td>
-            <td>Cantidad vendida</td>
-            <td>Ganancia</td>
-            <td>Día</td>
-            <td>Mes</td>
+            <td>ID VENTA</td>
+            <td>VENTA TOTAL</td>
+            <td>COSTO TOTAL</td>
+            <td>ID GANANCIA</td>
+            <td>GANANCIA</td>
+            <td>FECHA</td>
+            <td>HORA</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <tr *ngFor = "let LISTA_DATOS_2 of r_2">
+                <td>{{LISTA_DATOS_2.idventa}}</td>
+                <td>${{LISTA_DATOS_2.vendido}}</td>
+                <td>${{LISTA_DATOS_2.totalcompra}}</td>
+                <td>{{LISTA_DATOS_2.idganancias}}</td>
+                <td>${{LISTA_DATOS_2.ganacia}}</td>
+                <td>{{LISTA_DATOS_2.fecha}}</td>
+                <td>{{LISTA_DATOS_2.hora}}</td>
         </tr>
     </table>
     </div>
