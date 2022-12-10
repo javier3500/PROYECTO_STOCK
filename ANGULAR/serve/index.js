@@ -27,7 +27,9 @@ app.use('/carrito',require('./rutas_carrito'));
 app.use('/registros_ventas_1_sql',require('./registros_ventas_1'));
 app.use('/registros_ventas_2_sql',require('./registros_ventas_2'));
 //app.use('/carrito',require('./rutas_carrito'));
-
+app.use('/api_usuario',require('./router_usuario'));
+app.use('/api_empleado',require('./router_empleado'));
+app.use('/api_sistema',require('./router_sistema'));
 // declaras que funciona la ruta
 app.listen(app.get('port'), (error) => {
     if(error){

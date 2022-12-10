@@ -20,15 +20,34 @@
 		"secure":false,
 		"logLevel":"debug"
 	},
-	"/registros_ventas_1_sql/*":{
-		"target":"http://localhost:3000",
-		"secure":false,
-		"logLevel":"debug"
-	},
-	"/registros_ventas_2_sql/*":{
-		"target":"http://localhost:3000",
-		"secure":false,
-		"logLevel":"debug"
-	}
-	
+
+  "/api_usuario/*":{
+    "target":"http://localhost:3000",
+    "secure":"false",
+    "logLevel":"debug"
+  },
+
+  "/api_empleado/*":{
+    "target":"http://localhost:3000",
+    "secure":"false",
+    "logLevel":"debug"
+  },
+
+  "/api_sistema/*":{
+    "target":"http://localhost:3000",
+    "secure":"false",
+    "logLevel":"debug"
+  },
+  "/registros_ventas_1_sql/*":{
+	  "target":"http://localhost:3000",
+	  "secure":false,
+	  "logLevel":"debug"
+  },
+  "/registros_ventas_2_sql/*":{
+	  "target":"http://localhost:3000",
+	  "secure":false,
+	  "logLevel":"debug"
+  }
+  
+
 }

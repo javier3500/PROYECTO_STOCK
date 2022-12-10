@@ -1,16 +1,17 @@
-
-<p>Usuarios registrados</p>
-<table>
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+  <p>Usuarios registrados</p>
+<table id="customers">
   <thead>
     <th>Nombre</th>
-    <th>Conectividad</th>
+    <th></th>
   </thead>
   <tbody>
     <tr *ngFor="let usuario of Lista">
       <td>{{usuario.nombreusuario}}</td>
-      <td>{{usuario.estado}}</td>
-      <td><button>Eliminar</button></td>
+      <td><button (click) = "eliminar_usuario(usuario.nombreusuario)" type="button" >ELIMINAR</button></td>
     </tr>
   </tbody>
-
 </table>
+</div>
+
+

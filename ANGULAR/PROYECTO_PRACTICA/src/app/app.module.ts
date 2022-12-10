@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { NgModel } from '@angular/forms';
 
 
@@ -20,7 +20,13 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { GananciasComponent } from './ganancias/ganancias.component';
+
+import { ReContraComponent } from './re-contra/re-contra.component';
+import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
+import { SistemaComponent } from './sistema/sistema.component';
+import { MenuadminComponent } from './menuadmin/menuadmin.component';
 import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.component';
+
 
 
 
@@ -37,12 +43,16 @@ import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.compo
     ModalInsertarComponent,
     ModalModificarComponent,
     ListaBusquedaComponent,
+    GananciasComponent,
+
+    EmpleadoComponent,
     UsuarioComponent,
     VerUsuarioComponent,
-    EmpleadoComponent,
-    GananciasComponent,
-    GananciasListoComponent,
-    
+    ReContraComponent,
+    VerEmpleadosComponent,
+    SistemaComponent,
+    MenuadminComponent,
+    GananciasListoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,6 @@ import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

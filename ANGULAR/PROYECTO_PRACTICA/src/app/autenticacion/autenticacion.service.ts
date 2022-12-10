@@ -5,18 +5,21 @@ import { Injectable } from '@angular/core';
 })
 export class AutenticacionService {
 
-  private ingresar: boolean = false;
+  ingresar: boolean = true;
 
+  ingresar1: boolean = false;
+  ingresar2: boolean = false;
   constructor() { }
 
-    public ingresaraplicativo(obj:any):boolean{
-    this.ingresar =  obj.usuario == 'A'  && obj.password == 'A'; 
-    return this.ingresar;
-
-  }
-
-  public habilitarlogeo(){
+  public ingresarlogin():boolean{
     return this.ingresar;
   }
 
+  public ingresarmenu1():boolean{
+    return this.ingresar1;
+  }
+
+  public ingresarmenu2():boolean{
+    return this.ingresar2;
+  }
 }

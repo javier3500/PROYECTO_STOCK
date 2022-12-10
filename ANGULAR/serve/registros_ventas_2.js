@@ -51,5 +51,27 @@ rutas.get('/',(req, res) => {
     })
 })
 
+rutas.put('/',(req,res) =>{
+  
+    const {idpresentacion,presentacion} = req.body
+    
+    let sql =   `update stock.presentacion set stock.presentacion.presentacion='${presentacion}' 
+    where stock.presentacion.idpresentacion = '${idpresentacion}' `
+                 conexion.query(sql,(err,rows,fields)=> {
+
+                    try{
+                        if (err) throw err
+                    else{
+                        res.json({status: 'equipo modificado'})
+                    }
+                    }catch(e){
+                        console.log("ERROR EN LA ACTUALIZACION DE LOS DATOS /// " + e)
+                    }
+                    
+                })
+})
+
+
+
 
 module.exports = rutas;

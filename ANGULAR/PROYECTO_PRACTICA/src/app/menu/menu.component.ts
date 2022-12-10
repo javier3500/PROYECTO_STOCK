@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import {EquipoService } from '../service/equipo.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private EquipoService:EquipoService) { }
 
   ngOnInit(): void {
+    this.router.navigate(['/Carrito_ventana']);
+  }
+
+  cerrarsesion(){
+    this.router.navigate(['/login']);
   }
 
 }

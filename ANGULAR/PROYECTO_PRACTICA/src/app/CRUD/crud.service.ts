@@ -13,7 +13,8 @@ export class CRUDService {
 
   url='/api/';
   url_2= '/carrito_2/';
-
+  url_3= '/registros_ventas_1_sql/';
+  url_4= '/registros_ventas_2_sql/';
   constructor(private http: HttpClient) {}
 
   
@@ -55,6 +56,11 @@ export class CRUDService {
   agregar_presentacion(datos : presentacion){
     return this.http.post(this.url_2,datos);
   }
+
+
+  modificar_presentacion(datos:presentacion,id:string){
+    return this.http.put(this.url_4,datos);
+  }
   
 
 }
@@ -74,12 +80,16 @@ export interface INVENTARIO {
 
 export interface numero_presentacion {
   id_pre?:number;
-  
 }
 
 export interface presentacion {
-  idpresentacion?:string;
-  presentacion?:string
+  idpresentacion?:string|any;
+  presentacion?:string|any
+}
+
+export interface presentacion_2 {
+  idpresentacion?:string|any;
+
 }
 
 

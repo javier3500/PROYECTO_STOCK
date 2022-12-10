@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
-import {EquipoService,usuario} from '../service/equipo.service';
+import {EquipoService, empleado} from '../service/equipo.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-ver-usuario',
-  templateUrl: './ver-usuario.component.html',
-  styleUrls: ['./ver-usuario.component.css']
+  selector: 'app-ver-empleados',
+  templateUrl: './ver-empleados.component.html',
+  styleUrls: ['./ver-empleados.component.css']
 })
-export class VerUsuarioComponent implements OnInit {
-  constructor(private EquipoService:EquipoService) {}
-  Lista: usuario[] = [];
+export class VerEmpleadosComponent implements OnInit {
+  filtro = '';
+  Lista_empleados:empleado[] = [];
   confirmacion: boolean = false;
+
+  constructor(private EquipoService:EquipoService) { }
+
   ngOnInit(): void {
-    this.listaUsuarios();
+    this.listaEmpleados();
   }
 
-  listaUsuarios(){
-    this.EquipoService.getUsuario().subscribe(
+  listaEmpleados(){
+    this.EquipoService.getEmpleados().subscribe(
       res=>{
         console.log(res);
-         this.Lista =<any>res;
+         this.Lista_empleados =<any>res;
       },
       err=> console.log(err)
     );
   }
 
-  eliminar_usuario(nombreusuario: string){
+  eliminar_empleado(idempleado: string){
     Swal.fire({
       title: '¿Está seguro de borrar este registro?',
       icon: 'warning',
@@ -36,7 +39,7 @@ export class VerUsuarioComponent implements OnInit {
       confirmButtonText: 'Borrar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.EquipoService.DeteleUsuario(nombreusuario).subscribe(
+        this.EquipoService.DeleteEmpleado(idempleado).subscribe(
           res => {
             this.confirmacion = <any>res;
             if(this.confirmacion){
@@ -45,7 +48,7 @@ export class VerUsuarioComponent implements OnInit {
                 'Su articulo ha sido eliminado.',
                 'success'
               )
-              this.listaUsuarios();
+              this.listaEmpleados();
             }else{
               Swal.fire(
                 'ELIMINACION RECHAZADA!',
@@ -59,5 +62,4 @@ export class VerUsuarioComponent implements OnInit {
       }
     })
   }
-
 }

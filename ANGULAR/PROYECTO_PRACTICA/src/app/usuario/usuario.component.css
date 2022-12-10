@@ -1,49 +1,48 @@
 .container{
-    width: 400px;
-    height: 550px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 7px;
-    margin-left: 550px;
-    margin-top: 150px;
-  }
-  
-  .formulario{
-    margin-top: 100px;
-  }
-  
-  form input{
-    width: 350px;
-    height: 45px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-  }
-  
-  form select{
-    width: 150px;
-    height: 35px;
-    margin-left: 120px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-  }
-  
-  form button{
-    width: 200px;
-    height: 45px;
-    margin-left: 100px;
-    border-radius: 5px;
-  }
-  
-  .formulario .archivo{
-    margin-top: 15px;
-    margin-left: 60px;
-  
-  }
-  
-  
-  
-  
-  
+  width: 400px;
+  height: 550px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  margin-left: 550px;
+  margin-top: 150px;
+}
+
+.formulario{
+  margin-top: 100px;
+}
+
+form input{
+  width: 350px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+form select{
+  width: 150px;
+  height: 35px;
+  margin-left: 120px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+form button{
+  width: 200px;
+  height: 45px;
+  margin-left: 100px;
+  border-radius: 5px;
+}
+
+.formulario .archivo{
+  margin-top: 15px;
+  margin-left: 60px;
+
+}
+
+
+
+

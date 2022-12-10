@@ -1,0 +1,19 @@
+.container{
+    margin-left: 200px;
+  }
+
+  table {
+    background-color: antiquewhite;
+    text-align: left;
+    width: 70%;
+    border: 1px solid #000;
+  }
+
+  thead{
+    background-color: aqua;
+    border-bottom: solid 3px #000;
+  }
+
+  tr{
+    border: 2px #000;
+  }

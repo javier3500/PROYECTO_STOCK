@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup, Validators} from '@angular/forms';
+import { login, EquipoService} from '../service/equipo.service';
+import { Router } from '@angular/router';
 import { AutenticacionService } from '../autenticacion/autenticacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -9,43 +11,88 @@ import { AutenticacionService } from '../autenticacion/autenticacion.service';
 })
 export class LoginComponent implements OnInit {
 
-  public myForm!: FormGroup;
+  cadena: string = '';
 
-  constructor(private fb:FormBuilder, private confirmar:AutenticacionService) { }
+  _login:login={
+    nombreusuario:'',
+    contrasena:'',
+    idtipo: '',
+    contrasenaBD:''
+  };
+
+  constructor(
+    private EquipoService:EquipoService,
+    private router : Router,
+    private confirmar:AutenticacionService
+  ) { }
+
 
   ngOnInit(): void {
-    this.myForm = this.createMyForm();
-   
-  }
+    this.EquipoService.cerrar_sesion();
+    this.get_config();
 
-  private createMyForm(): FormGroup{
-
-    return this.fb.group({
-
-      usuario:["",[Validators.required]],
-      password:["",[Validators.required]]
-
-    });
 
   }
 
-  public submitFormulario(){
-  
-    if(this.myForm.invalid){
-      alert("USUARIO INVALIDO");
-      return;
+  get_config(){
+    this.EquipoService.get_config_sistema().subscribe(
+      res=>{
+         this.EquipoService.confg = JSON.stringify(<any>res);
+         console.log(this.EquipoService.confg);
+      },
+      err=> console.log(err)
+    );
+  }
+
+  Iniciar(){
+    this.EquipoService.login(this._login.nombreusuario).subscribe(
+      res=>{
+         this.cadena= JSON.stringify(<any>res);
+        // console.log(this.cadena);
+         this._login.contrasenaBD = this.cadena.substring(0, this.cadena.indexOf(",")).substring(this.cadena.indexOf(":")).replace(/['"]+/g, '').replace(':', '');
+         this._login.idtipo = this.cadena.substring(this.cadena.indexOf(","), this.cadena.length).substring(this.cadena.indexOf(":") - 3).replace(/['"]+/g, '').replace('}', '').replace(']', '');
+         this.EquipoService.tipo = this._login.idtipo;
+         this.iniciarsistema(this._login.contrasena);
+      },
+      err=> console.log(err)
+    )
+  }
+
+  iniciarsistema(contrasena: string){
+    if(this._login.contrasenaBD == contrasena){
+      this.EquipoService.usuarioarray.nombre = this._login.nombreusuario;
+
+      if(this._login.idtipo == 'tip01'){
+        this.confirmar.ingresar = false;
+        this.EquipoService.crear_sesion();
+        this.confirmar.ingresar1 = false;
+        this.confirmar.ingresar2 = true;
+        //this.confirmar.ingresaradministrador();
+      }else{
+        if(this._login.idtipo == 'tip02' && this.EquipoService.confg == '[{"disponible":"activado"}]'){
+          this.confirmar.ingresar = false;
+          this.EquipoService.crear_sesion();
+          this.confirmar.ingresar1 = true;
+          this.confirmar.ingresar2 = false;
+        }else{
+          this.router.navigate(['/login']);
+          Swal.fire(
+            'ACCESO DENEGADO',
+            'Ahora no hay sistema.',
+            'error'
+          )
+        };
+
+      }
+
 
     }
-   
-    if(!this.confirmar.ingresaraplicativo(this.myForm.value)){
-      alert("usuario o contraseña invalido");
+    else{
+      alert("El nombre de usuario o contraseña son incorrectas");
     }
-    //muestra mi datos correctos
-    
   }
 
-  
-
+  recuperar(){
+    this.router.navigate(['/re-contra']);
+  }
 }
-
-

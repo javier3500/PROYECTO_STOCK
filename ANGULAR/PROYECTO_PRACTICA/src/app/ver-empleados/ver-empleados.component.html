@@ -1,0 +1,26 @@
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+
+
+  <p>Empleados</p>
+  <table id="customers">
+    <thead>
+      <th>INE/IFE</th>
+      <th>Nombre</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Sexo</th>
+      <th>Fecha de nacimiento</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of  Lista_empleados">
+        <td>{{empleado.idempleado}}</td>
+        <td>{{empleado.nombre}}</td>
+        <td>{{empleado.apellido1}}</td>
+        <td>{{empleado.apellido2}}</td>
+        <td>{{empleado.sexo}}</td>
+        <td>{{empleado.fechanacimiento}}</td>
+        <td><button (click) = "eliminar_empleado(empleado.idempleado)" type="button" >ELIMINAR</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

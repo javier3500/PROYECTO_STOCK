@@ -1,18 +1,7 @@
-
-<div class="marco">
-    <form [formGroup]="myForm" (ngSubmit)="submitFormulario()">
-
-
-        <div class="formulario">
-        <label for="">NOMBRE DEL USUARIO</label><br>
-        <input formControlName="usuario" type="text" placeholder="COLOCA EL NOMBRE DE USUARIO"><br>
-
-        <label for="">CONTRASEÑA DEL USUARIO</label><br>
-        <input formControlName="password" type="password" placeholder="COLOCA EL NOMBRE DE USUARIO"><br>
-
-        <button class="btn btn-success">INGRESAR</button>
-
-         </div>
-
+<div class="contenedor">
+    <form>
+      <input [(ngModel)]="_login.nombreusuario" [ngModelOptions]="{standalone: true}" type="text" placeholder="Nombre de usuario"><br>
+      <input [(ngModel)]="_login.contrasena" [ngModelOptions]="{standalone: true}" type="password" placeholder="Contraseña"><br>
+      <button (click)="Iniciar()">INGRESAR</button>
     </form>
-</div>
+  </div>

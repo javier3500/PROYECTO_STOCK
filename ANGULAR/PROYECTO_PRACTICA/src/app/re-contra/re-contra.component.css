@@ -1,0 +1,42 @@
+.container{
+    width: 450px;
+    height: 245px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    margin-left: 550px;
+    margin-top: 150px;
+  }
+
+  .formulario input{
+    width: 400px;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+
+  .botones{
+    margin-left: 200px;
+  }
+
+  .botones button{
+    width: 100px;
+    height: 35px;
+    margin-left: 15px;
+    margin-top: 3px;
+    border-radius: 5px;
+  }
+
+  .formulario input{
+    margin-top: 10px;
+  }
+
+  h3, span{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+
+  }
