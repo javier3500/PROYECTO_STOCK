@@ -24,22 +24,23 @@
   <div id="creacion_pdf">
   <table id="customers">
     <tr>
+      <th>#</th>
       <th>ID_ARTICULO</th>
       <th>ARTICULO</th>
       <th>UNIDADES</th>
       <th>presentacion</th>
       <th>PRECIO</th>
-      <th>COSTO</th>
       <th>ELIMINAR</th>
     </tr>
     <tr *ngFor = "let LISTA_DATOS of r">
+      <td> {{LISTA_DATOS.indice_tabla}} </td>
       <td> {{LISTA_DATOS.idarticulo}} </td>
       <td> {{LISTA_DATOS.producto}}</td>
       <td> {{LISTA_DATOS.existencia}}</td >
       <td> {{LISTA_DATOS.presentacion}}</td>
       <td> {{LISTA_DATOS.precioventa}}</td>
-      <td> {{LISTA_DATOS.preciocompra}}</td>
-      <td><BUtton (click) = "eliminar_articulo_lista(LISTA_DATOS.idarticulo)">Eliminar</BUtton></td>
+      
+      <td><BUtton (click) = "eliminar_2(LISTA_DATOS.idarticulo)">Eliminar</BUtton></td>
     </tr>
     
   </table>

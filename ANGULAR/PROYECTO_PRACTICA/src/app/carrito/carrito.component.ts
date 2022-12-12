@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as html2pdf from 'html2pdf.js';
+
 import { SCarritoService,LISTA_DATOS,total,
   VENTA,numero_ventas,LISTA_DATOS_2,numero_articulos,
-  exitencia,TOTAL_COSTO_1,TOTAL_COSTO_2,total_2, conseguir_id_ganancias, GANANCIAS} from '../S_carrito/s-carrito.service';
+  exitencia,TOTAL_COSTO_1,TOTAL_COSTO_2,total_2, conseguir_id_ganancias, GANANCIAS,LISTA_DATOS_3} from '../S_carrito/s-carrito.service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -40,13 +41,52 @@ export class CarritoComponent implements OnInit {
 
   public arreglo_3 : Array<any> =[];
 
-  public arreglo_4 : Array<any> =[];
+
+  public auxiliar : Array<any> =[{
+    indice_tabla: 0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  }];
+
+  public arreglo_5 : Array<any> =[{
+    indice_tabla: 0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  }];
+
+  public  restar_auxuliar : Array<any> =[{
+   
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  }];
+
+ 
   
   public suma : Array<any> =[];
   public suma_2 : Array<any> =[];
   public id_venta : Array<any> =[];
   public id_ganancia : Array<any> =[];
-  r:LISTA_DATOS[] | any;
+  r:LISTA_DATOS |any = {
+    indice_tabla: 0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  }
 
   N_articulos : numero_articulos = {
     idarticulo :'',
@@ -75,8 +115,9 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-  
-  restar_total : LISTA_DATOS = {
+
+  lista_3 : LISTA_DATOS_3 = {
+    indice_tabla:0,
     idarticulo :'',
     producto :'',
     existencia:0,
@@ -85,12 +126,42 @@ export class CarritoComponent implements OnInit {
     presentacion :''
   };
 
-    total_cantidad : total = {
+  lista_4 : LISTA_DATOS_3 = {
+    indice_tabla:0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  };
+
+  comparar : LISTA_DATOS_3 = {
+    indice_tabla: 0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  };
+  restar_total : LISTA_DATOS = {
+    indice_tabla:0,
+    idarticulo :'',
+    producto :'',
+    existencia:0,
+    precioventa :0,
+    preciocompra :0,
+    presentacion :''
+  };
+
+
+  total_cantidad : total = {
       precioventa: 0
   };
   total_cantidad_costo : total_2 = {
     preciocompra: 0
-};
+  };
     Venta_activa: VENTA = {
     idventa :'',
     vendido : 0,
@@ -122,7 +193,7 @@ export class CarritoComponent implements OnInit {
   COSTO : TOTAL_COSTO_2 = {
     preciocompra :0,
   };
-  
+   valor_real : any
  
   constructor(private router : Router,private Carga :SCarritoService) {
 
@@ -130,6 +201,10 @@ export class CarritoComponent implements OnInit {
    }
 
     ngOnInit(): void {
+    this.auxiliar.pop()
+    this.arreglo_5.pop()
+    this.restar_auxuliar.pop()
+    let contador : number = 0
      this.limpiar_arregle()
     this.numero_registro()
     this.numero_registro_2()
@@ -138,10 +213,32 @@ export class CarritoComponent implements OnInit {
     
     this.Carga.disparador_de_lista.subscribe(
       (data: any) => {
-        this.arreglo.push(data)
-
-        this.r =this.arreglo;
+       
+        this.comparar =data
+        this.auxiliar.push(this.comparar)
+        const valor = this.auxiliar.filter(Element =>{
+          return Element.idarticulo === this.comparar.idarticulo
+        })
+        const valor_2 = this.auxiliar.find(Element =>{
+          return Element.idarticulo === this.comparar.idarticulo
+        })
+        this.valor_real = valor
+       
       
+        this.lista_3 = valor_2
+        this.lista_3.indice_tabla=valor.length 
+        const valor_4 = this.arreglo_5.lastIndexOf(this.lista_3)
+        if(valor_4==-1){
+          this.arreglo_5.push(this.lista_3)
+        }else{
+          this.lista_3 = this.arreglo_5[valor_4]
+          this.lista_3.indice_tabla =  valor.length
+          this.arreglo_5[valor_4] = this.lista_3
+        }
+        this.arreglo.push(data)
+        this.r =this.arreglo_5;
+        
+        
       }
     )
 
@@ -287,51 +384,7 @@ numero_registro_2(){
     open_modal_listar(){
     this.modal_lista_boton = true;
   }
-//listo terminado
-  eliminar_articulo_lista(idarticulo:string){
-      let i : number=0
-    
-    while(i<this.arreglo.length){
-    this.lista_2 = this.arreglo[i]
-    this.arreglo_3[i] = this.lista_2
-      i++
-    }
-    const valor = this.arreglo_3.find(Element =>{
-      return Element.idarticulo === idarticulo
-    })
-
-    let t : number = this.arreglo.length -1
-    let variable : number = 0
-    let index: number = this.arreglo.indexOf(valor)
-    while(t > -1){
-    
-     if(index <= t){
-      if(index == t){
-        this.restar_total=this.arreglo.pop()
-        this.total = this.total - this.restar_total.precioventa
-        this.total_costo = this.total_costo - this.restar_total.preciocompra
-      }else{
-        this.arreglo_2[variable]= this.arreglo.pop()
-        variable++
-      }     
-    }
-        t--
-    }
-    let indice_final : number = 0
-    let indice_final_3 : number = this.arreglo_2.length
-    while(indice_final < indice_final_3){
-      console.log( "------> "+indice_final) 
-      this.arreglo.push(this.arreglo_2.pop())
-      indice_final++
-    }
-    let limpiar : number = 0
-    let limpiar_2 : number = this.arreglo_3.length
-    while(limpiar < limpiar_2){
-           this.arreglo_3.pop()
-           console.log(this.arreglo_3)
-         limpiar++
-       }
-  }
+  
 //listo terminado
   actualizar_existencias(){
     let indice,indice_2, valor_1 : number = 0  
@@ -394,6 +447,88 @@ numero_registro_2(){
       this.arreglo.pop()
       i++
     }    
+  }
+
+
+  eliminar_2(id:string){
+    this.lista_2.idarticulo = id
+    const valor_2 = this.arreglo_5.findIndex(Element =>{
+      return Element.idarticulo === this.lista_2.idarticulo
+    })
+    let c_1: number = 0,c_2: number = 0,index: number = 0
+    index = this.arreglo_5.length -1
+    while(index > -1){
+      if(valor_2 <= index){
+          if(valor_2 == index){
+              this.restar_total=this.arreglo_5.pop()
+              this.total = this.total - (this.restar_total.precioventa * this.restar_total.indice_tabla)
+              this.total_costo = this.total_costo - (this.restar_total.preciocompra * this.restar_total.indice_tabla)
+          }else{
+            this.arreglo_2[c_2]= this.arreglo_5.pop()
+            c_2++
+          }
+      }
+      index--
+    }
+    let indice_final : number = 0
+    let indice_final_3 : number = this.arreglo_2.length
+    while(indice_final < indice_final_3){
+      this.arreglo_5.push(this.arreglo_2.pop())
+      indice_final++
+    }
+    
+    let contador : number = 0,contador2 : number = this.valor_real.length-1
+    c_1 = this.auxiliar.length-1
+   
+    
+   // const valor_4 = this.auxiliar.lastIndexOf(this.restar_total)
+   console.log(this.valor_real)
+    while(c_1 > -1){
+      //console.log(this.restar_total.idarticulo)
+      //const valor_3 = this.auxiliar.lastIndexOf(this.restar_total)
+      const valor_3 =  this.auxiliar.lastIndexOf(this.restar_total)
+      const valor_4 = this.auxiliar.lastIndexOf(this.valor_real[contador2])
+      console.log("INDEX = "+ valor_3 + "/  INDICE = "+ c_1 + " / INDEX = "+ valor_4)
+       
+        // const valor_3 = this.auxiliar.lastIndexOf(Element =>{
+      //  return Element.idarticulo === this.restar_total.idarticulo
+     // })
+     
+     if(valor_4 <= c_1){
+      if(valor_4 == c_1){
+        this.auxiliar.pop()
+      }else if(valor_3 == c_1){
+        this.auxiliar.pop()
+      }else{
+          this.arreglo_3[contador] = this.auxiliar.pop()
+          contador++
+      }
+    }
+    
+    c_1--
+    contador2--
+    }
+
+
+    let indice_final_1 : number = 0
+    let indice_final_2 : number = this.arreglo_3.length
+    while(indice_final_1 < indice_final_2){
+    this.auxiliar.push(this.arreglo_3.pop())
+    indice_final_1++
+    }
+    
+      this.auxiliar.pop()
+      let condicion: number = this.auxiliar.length
+      if(condicion > 0){
+        while(condicion>-1){
+          this.auxiliar.pop()
+          condicion--
+        }
+      }
+   
+    console.log(this.auxiliar.length)
+    console.log(this.auxiliar)
+   
   }
 
 }

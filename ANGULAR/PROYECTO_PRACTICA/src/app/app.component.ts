@@ -13,17 +13,17 @@ export class AppComponent {
   constructor(private confirmar:AutenticacionService){}
 
  public visualizarlogin():boolean{
-  console.log( this.confirmar.ingresar);
+  //console.log( this.confirmar.ingresar);
   return this.confirmar.ingresarlogin();
  }
 
  public visualizarmenu1():boolean{
-  console.log( this.confirmar.ingresar);
+  //console.log( this.confirmar.ingresar);
   return this.confirmar.ingresarmenu1();
  }
 
  public visualizarmenu2():boolean{
-  console.log( this.confirmar.ingresar);
+  //console.log( this.confirmar.ingresar);
   return this.confirmar.ingresarmenu2();
  }
 
