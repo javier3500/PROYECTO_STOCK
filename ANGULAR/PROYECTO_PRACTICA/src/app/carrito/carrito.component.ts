@@ -99,6 +99,7 @@ export class CarritoComponent implements OnInit {
   };
 
   lista : LISTA_DATOS = {
+    indice_tabla:0,
     idarticulo :'',
     producto :'',
     existencia:0,
@@ -375,38 +376,67 @@ numero_registro_2(){
         this.lista = data[0]
         this.total = this.total + this.lista.precioventa
         this.total_costo = this.total_costo + this.lista.preciocompra
-        this.arreglo.push(data[0])
-        this.r =this.arreglo;
-      },
+        this.comparar =data[0]
+        this.auxiliar.push(this.comparar)
+        const valor = this.auxiliar.filter(Element =>{
+          return Element.idarticulo === this.comparar.idarticulo
+        })
+        const valor_2 = this.auxiliar.find(Element =>{
+          return Element.idarticulo === this.comparar.idarticulo
+        })
+        this.valor_real = valor
+       console.log(valor.length)
+       console.log(valor_2)
+       this.lista_3 = valor_2
+       this.lista_3.indice_tabla=valor.length 
+       const valor_4 = this.arreglo_5.lastIndexOf(this.lista_3)
+       if(valor_4==-1){
+         this.arreglo_5.push(this.lista_3)
+       }else{
+         this.lista_3 = this.arreglo_5[valor_4]
+         this.lista_3.indice_tabla =  valor.length
+         this.arreglo_5[valor_4] = this.lista_3
+       }
+        //this.arreglo.push(data[0])
+          this.r =this.arreglo_5;
+          this.capturar_id_articulo = ''
+      }
       )
     }
 //listo terminado
-    open_modal_listar(){
-    this.modal_lista_boton = true;
-  }
+  
   
 //listo terminado
   actualizar_existencias(){
+
+    let userAccount = {
+      indice_tabla: 0,
+      idarticulo :'',
+      existencia:0
+    };
     let indice,indice_2, valor_1 : number = 0  
     let id_articulo : string = ''
-    indice = this.arreglo.length
+    indice = this.arreglo_5.length
     indice_2 = this.suma.length
     let indice_3: number = this.suma_2.length
     while(indice > 0){
-    this.N_articulos=this.arreglo.pop()
+      userAccount=this.arreglo_5.pop()
+      this.N_articulos.idarticulo = userAccount.idarticulo
+      this.N_articulos.existencia = userAccount.existencia
     id_articulo = this.N_articulos.idarticulo
-    valor_1 = this.N_articulos.existencia - 1
+    valor_1 = this.N_articulos.existencia - userAccount.indice_tabla
     this.N_articulos_actualizar.existencia = valor_1
-
     this.Carga.editar_articulo(id_articulo,this.N_articulos_actualizar).subscribe(
       res => {
        console.log(res)
       },
       err => console.log(err)
      )
+    
     indice--
     }
-// VACIA LA SUMA TOTAL  
+// VACIA LA SUMA TOTAL 
+
     while(indice_2 > 0){
       this.suma.pop()
       indice_2--
@@ -420,7 +450,10 @@ numero_registro_2(){
       this.total = 0
       this.total_costo = 0
       this.limpiar_arregle()
+    
   }
+
+
 //listo
   btnCrearPdf(){
     var pdf = {
@@ -442,11 +475,17 @@ numero_registro_2(){
 //listo
   limpiar_arregle(){
     let i : number = 0
-    let i_2 : number = this.arreglo.length
+    let i_2 : number = this.arreglo_5.length
     while(i < i_2){
-      this.arreglo.pop()
+      this.arreglo_5.pop()
       i++
-    }    
+    }
+    
+    let condicion: number = this.auxiliar.length
+        while(condicion>-1){
+          this.auxiliar.pop()
+          condicion--
+        }
   }
 
 
@@ -479,21 +518,12 @@ numero_registro_2(){
     
     let contador : number = 0,contador2 : number = this.valor_real.length-1
     c_1 = this.auxiliar.length-1
-   
-    
-   // const valor_4 = this.auxiliar.lastIndexOf(this.restar_total)
+
    console.log(this.valor_real)
     while(c_1 > -1){
-      //console.log(this.restar_total.idarticulo)
-      //const valor_3 = this.auxiliar.lastIndexOf(this.restar_total)
       const valor_3 =  this.auxiliar.lastIndexOf(this.restar_total)
       const valor_4 = this.auxiliar.lastIndexOf(this.valor_real[contador2])
-      console.log("INDEX = "+ valor_3 + "/  INDICE = "+ c_1 + " / INDEX = "+ valor_4)
-       
-        // const valor_3 = this.auxiliar.lastIndexOf(Element =>{
-      //  return Element.idarticulo === this.restar_total.idarticulo
-     // })
-     
+
      if(valor_4 <= c_1){
       if(valor_4 == c_1){
         this.auxiliar.pop()
@@ -504,19 +534,15 @@ numero_registro_2(){
           contador++
       }
     }
-    
     c_1--
     contador2--
     }
-
-
     let indice_final_1 : number = 0
     let indice_final_2 : number = this.arreglo_3.length
     while(indice_final_1 < indice_final_2){
     this.auxiliar.push(this.arreglo_3.pop())
     indice_final_1++
     }
-    
       this.auxiliar.pop()
       let condicion: number = this.auxiliar.length
       if(condicion > 0){
@@ -525,10 +551,13 @@ numero_registro_2(){
           condicion--
         }
       }
-   
     console.log(this.auxiliar.length)
     console.log(this.auxiliar)
    
+  }
+
+  open_modal_listar(){
+    this.modal_lista_boton = true;
   }
 
 }

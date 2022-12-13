@@ -46,8 +46,22 @@ export class ListaBusquedaComponent implements OnInit {
     presentacion:string,
     preciocompra:string,
     precioventa:string){
-      let i : number = -1
-      //console.log(id_articulo)
+      
+      let cadena :number
+      var separador = /:/gi;
+     
+      cadena = parseFloat(existencia)
+      console.log(cadena)
+      let datos:Array<any> | any= []
+      datos = cadena.toString().split('')
+      console.log(datos)
+      /*
+      if(cadena.search(i)!=-1){
+        console.log('no es decirmal')
+      }else{
+        console.log('si es decimal')
+      }
+      */
       this.Carga.disparador_de_lista.emit({
       
       idarticulo : id_articulo,

@@ -42,3 +42,45 @@
   padding-left: 10px;
   opacity: .5;
   }
+
+  .ventana{
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 200vh;
+    width: 200vw;
+    transition: all .5s;
+  }
+
+  .modal_marco{
+    border-radius: 12px;
+    background:white;
+    text-align: center;
+    border: solid;
+    height: 600px;
+    width: 1000px;
+    margin: 100px;
+    margin-left: 500px;
+  }
+
+  .margen{
+    color: black;
+    text-align: center;
+   
+  }
+  
+  input[type=text], select {
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+
+  
+  

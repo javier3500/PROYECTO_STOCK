@@ -26,6 +26,7 @@ import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
 import { SistemaComponent } from './sistema/sistema.component';
 import { MenuadminComponent } from './menuadmin/menuadmin.component';
 import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.component';
+import { GramajesComponent } from './gramajes/gramajes.component';
 
 
 
@@ -52,7 +53,8 @@ import { GananciasListoComponent } from './ganancias-listo/ganancias-listo.compo
     VerEmpleadosComponent,
     SistemaComponent,
     MenuadminComponent,
-    GananciasListoComponent
+    GananciasListoComponent,
+    GramajesComponent
   ],
   imports: [
     BrowserModule,
