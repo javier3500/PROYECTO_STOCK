@@ -8,10 +8,14 @@
 
   
     
-    <label for="">EL CODIGO DEL ARTICULO</label><br>
-    <input  [(ngModel)]= "capturar_id_articulo" name = "capturar_id_articulo" id = "capturar_id_articulo" class="buscador" type="text" required >
-    <td><BUtton  (click) = "agregar_lista_consulta()"  >AGREGAR LISTA</BUtton></td>
-    <td><BUtton (click) = "open_modal_listar()">BUSCAR</BUtton></td>
+   
+    <form action="">
+    <label for="">INGRESA EL CODIGO PRODUCTO = </label>
+    <input  [(ngModel)]= "capturar_id_articulo" name = "capturar_id_articulo" id = "capturar_id_articulo" class="buscador" type="text" required>
+    <BUtton  (click) = "agregar_lista_consulta()">AGREGAR LISTA</BUtton>
+    </form>
+    <label for="">BUSCAR POR NOMBRE</label>
+    <BUtton (click) = "open_modal_listar()">BUSCAR</BUtton>
     
 
         <div class="" *ngIf="modal_lista_boton == true">

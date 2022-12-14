@@ -5,16 +5,16 @@ import * as html2pdf from 'html2pdf.js';
 
 import { SCarritoService,LISTA_DATOS,total,
   VENTA,numero_ventas,LISTA_DATOS_2,numero_articulos,
-  exitencia,TOTAL_COSTO_1,TOTAL_COSTO_2,total_2, conseguir_id_ganancias, GANANCIAS,LISTA_DATOS_3} from '../S_carrito/s-carrito.service';
+  exitencia,TOTAL_COSTO_1,TOTAL_COSTO_2,total_2, conseguir_id_ganancias, 
+  GANANCIAS,LISTA_DATOS_3} from '../S_carrito/s-carrito.service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
 
-
-
 export class CarritoComponent implements OnInit {
+  valor_real : any
   fecha_documento : Date = new Date();
   indice_tabla : number = 0
   capturar_id_articulo: string | any = ''
@@ -23,7 +23,10 @@ export class CarritoComponent implements OnInit {
   id_valor_2 :any | number 
   total : any | number = 0
   total_costo : any | number = 0
-  
+  public suma : Array<any> =[];
+  public suma_2 : Array<any> =[];
+  public id_venta : Array<any> =[];
+  public id_ganancia : Array<any> =[];
   id_final :any | string
   id_final_2 :any | string
   num_1 : any | number = 0
@@ -38,10 +41,7 @@ export class CarritoComponent implements OnInit {
     presentacion :''
   }];
   public arreglo_2 : Array<any> =[];
-
   public arreglo_3 : Array<any> =[];
-
-
   public auxiliar : Array<any> =[{
     indice_tabla: 0,
     idarticulo :'',
@@ -51,7 +51,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   }];
-
   public arreglo_5 : Array<any> =[{
     indice_tabla: 0,
     idarticulo :'',
@@ -61,7 +60,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   }];
-
   public  restar_auxuliar : Array<any> =[{
    
     idarticulo :'',
@@ -71,13 +69,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   }];
-
- 
-  
-  public suma : Array<any> =[];
-  public suma_2 : Array<any> =[];
-  public id_venta : Array<any> =[];
-  public id_ganancia : Array<any> =[];
   r:LISTA_DATOS |any = {
     indice_tabla: 0,
     idarticulo :'',
@@ -87,17 +78,14 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   }
-
   N_articulos : numero_articulos = {
     idarticulo :'',
     existencia:0
   };
-
   N_articulos_actualizar : exitencia = {
   
     existencia:0
   };
-
   lista : LISTA_DATOS = {
     indice_tabla:0,
     idarticulo :'',
@@ -107,7 +95,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-
   lista_2 : LISTA_DATOS_2 = {
     idarticulo :'',
     producto :'',
@@ -116,7 +103,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-
   lista_3 : LISTA_DATOS_3 = {
     indice_tabla:0,
     idarticulo :'',
@@ -126,7 +112,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-
   lista_4 : LISTA_DATOS_3 = {
     indice_tabla:0,
     idarticulo :'',
@@ -136,7 +121,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-
   comparar : LISTA_DATOS_3 = {
     indice_tabla: 0,
     idarticulo :'',
@@ -155,8 +139,6 @@ export class CarritoComponent implements OnInit {
     preciocompra :0,
     presentacion :''
   };
-
-
   total_cantidad : total = {
       precioventa: 0
   };
@@ -170,7 +152,6 @@ export class CarritoComponent implements OnInit {
     hora :'',
     totalcompra :0
   }
-
   insertar_ganancias: GANANCIAS = {
   idganancias: '',
   ganacia:0,
@@ -179,7 +160,6 @@ export class CarritoComponent implements OnInit {
    N_regitro: numero_ventas= {
     id_count:0
   }
-
   N_regitro_2: conseguir_id_ganancias= {
     id_gan:0
   }
@@ -194,7 +174,7 @@ export class CarritoComponent implements OnInit {
   COSTO : TOTAL_COSTO_2 = {
     preciocompra :0,
   };
-   valor_real : any
+
  
   constructor(private router : Router,private Carga :SCarritoService) {
 

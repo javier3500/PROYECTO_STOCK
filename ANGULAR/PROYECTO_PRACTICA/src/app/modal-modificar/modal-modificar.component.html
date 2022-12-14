@@ -7,29 +7,25 @@
           <form action="" >
           
           <label for="">CODIGO DEL ARTICULO</label> <br>
-          <input  [(ngModel)]= "actualizar.idarticulo" type="text" name="idarticulo" id="idarticulo" placeholder="insertar el codigo del articulo"><br>
+          <input  [(ngModel)]= "actualizar.idarticulo" type="text" name="idarticulo" id="idarticulo" placeholder="insertar el codigo del articulo" required><br>
           
           <label for="">PRESENTACION</label> <br>
-          <input [(ngModel)]="actualizar.id_presentacion" type="text" name="id_presentacion" id="" placeholder="presentacion"><br>
+          <input [(ngModel)]="actualizar.presentacion" type="text" name="presentacion" id="presentacion" placeholder="presentacion" required><br>
 
           <label for="">ARTICULO</label> <br>
-          <input [(ngModel)]="actualizar.producto" type="text" name="producto" id="producto" placeholder="insertar el nombre del articulo"><br>
+          <input [(ngModel)]="actualizar.producto" type="text" name="producto" id="producto" placeholder="insertar el nombre del articulo" required><br>
 
           <label for="">EXITENCIA</label> <br>
-          <input [(ngModel)]="actualizar.existencia" type="number" name="existencia" id="existencia" placeholder="Numero de articulos"><br>
+          <input [(ngModel)]="actualizar.existencia" type="number" name="existencia" id="existencia" placeholder="Numero de articulos" required><br>
 
           <label for="">PRECIO DE VENTA </label> <br>
-          <input [(ngModel)]="actualizar.precioventa" type="number" name="precioventa" id="precioventa" placeholder="$00.00"><br>
+          <input [(ngModel)]="actualizar.precioventa" type="number" name="precioventa" id="precioventa" placeholder="$00.00" required><br>
 
           <label for="">PRECIO DE COMPRA </label> <br>
-          <input [(ngModel)]="actualizar.preciocompra" type="number" name="preciocompra" id="preciocompra" placeholder="$00.00"><br>
-
-          
-          <div class="container">
-            <button class="btn_cerrar"  (click) = "Cerrar_modal_modificar()"> CERRAR </button>
-            <button class="btn_insertar"(click) = "modificar()"> INSERTAR </button>
-          </div>
+          <input [(ngModel)]="actualizar.preciocompra" type="number" name="preciocompra" id="preciocompra" placeholder="$00.00" required><br>            
+          <button class="btn_insertar"(click) = "modificar()"> INSERTAR </button> 
+          <button class="btn_cerrar"  (click) = "Cerrar_modal_modificar()"> CANCELAR </button>
         </form>  
-
+            
       </div>
 

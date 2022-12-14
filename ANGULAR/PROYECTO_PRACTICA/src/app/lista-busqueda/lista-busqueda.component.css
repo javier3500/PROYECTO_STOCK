@@ -48,7 +48,7 @@
     color: #fff;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -200px;
     height: 200vh;
     width: 200vw;
     transition: all .5s;
@@ -71,14 +71,11 @@
    
   }
   
-  input[type=text], select {
-    width: 400px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+  .input[type=text], select {
+    width: 60px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+ 
   }
   
 

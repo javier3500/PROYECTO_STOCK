@@ -13,9 +13,11 @@ export class SCarritoService {
 
   
   $lista_articulos = new EventEmitter <any>();
+  $gramaje = new EventEmitter <any>();
   @Output () disparador_de_lista : EventEmitter <any> = new EventEmitter();
   @Output () suma_de_valores : EventEmitter <any> = new EventEmitter();
   @Output () suma_de_costo : EventEmitter <any> = new EventEmitter();
+  @Output () enviar_cantidad : EventEmitter <any> = new EventEmitter();
 
   contador(indice : number){
     let i = indice - 1

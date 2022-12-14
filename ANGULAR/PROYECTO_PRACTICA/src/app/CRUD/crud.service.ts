@@ -58,7 +58,7 @@ export class CRUDService {
   }
 
 
-  modificar_presentacion(datos:presentacion,id:string){
+  modificar_presentacion(datos:presentacion){
     return this.http.put(this.url_4,datos);
   }
   
@@ -75,7 +75,16 @@ export interface INVENTARIO {
   preciocompra? :number;
   id_presentacion? :string;
   presentacion? :string;
-  
+}
+
+export interface INVENTARIO_2 {
+  idarticulo? :string;
+  producto? :string;  
+  existencia? : number;
+  precioventa? :number;
+  preciocompra? :number;
+  idpresentacion? :string;
+  presentacion? :string;
 }
 
 export interface numero_presentacion {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CRUDService, INVENTARIO} from '../CRUD/crud.service';
+import { CRUDService, INVENTARIO, INVENTARIO_2, presentacion} from '../CRUD/crud.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -16,16 +16,20 @@ export class ModalModificarComponent implements OnInit {
   valor : string |any
 
   
-  actualizar : INVENTARIO = {
+  actualizar : INVENTARIO_2 = {
     idarticulo :'',
     producto :'',
     existencia:0,
     precioventa :0,
     preciocompra :0,
-    id_presentacion :'pre01',
+    idpresentacion :'',
     presentacion :''
   }; 
   
+  presentacion : presentacion = {
+    idpresentacion:'',
+    presentacion:''
+  }
 
   constructor(private modalSS:CRUDService, private router : Router, private ACT_router : ActivatedRoute) { }
 
@@ -37,6 +41,7 @@ export class ModalModificarComponent implements OnInit {
       this.modalSS.mostrar_datos(id_entrada).subscribe(
         (res :any)=>{
           this.actualizar = res[0];
+          console.log(res)
         },
         err=>console.log(err)
       );
@@ -46,6 +51,11 @@ export class ModalModificarComponent implements OnInit {
 
   modificar(){
     this.valor =  this.actualizar.idarticulo
+    this.presentacion.idpresentacion = this.actualizar.idpresentacion
+    this.presentacion.presentacion = this.actualizar.presentacion
+    this.modalSS.modificar_presentacion(this.presentacion).subscribe({
+
+    })
    this.modalSS.editar_articulo(this.valor,this.actualizar).subscribe(
     res => {
       Swal.fire({
