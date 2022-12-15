@@ -59,10 +59,11 @@
     background:white;
     text-align: center;
     border: solid;
-    height: 600px;
+    overflow-y: scroll;
+    height: 500px;
     width: 1000px;
-    margin: 100px;
-    margin-left: 500px;
+    margin-top: 50px;
+    margin-left: 390px;
   }
 
   .margen{

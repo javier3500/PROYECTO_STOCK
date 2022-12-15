@@ -1,21 +1,18 @@
-
-  <div class="ventana">
-
-    <div class="modal_marco">
-
-      <div class="margen">
-<form action="">
-<label for="">BUSCARDOR</label><br>
-<input class="buscador" type="text" name="filtro" id="" placeholder="ESCRIBE EL NOMBRE DEL ARTICULO" [(ngModel)] = "filtro"> 
- <button class="" (click)="close_lista_busqueda()"> SALIR </button>  <br><br>
+<div class="ventana">
+  <div class="modal_marco">
+    <div class="margen">
+<form >
+<label for="">Buscador</label><br>
+<input class="buscador" type="text" name="filtro" id="" placeholder="Escribe el nombre del artículo" [(ngModel)] = "filtro"> 
+ <button class="" (click)="close_lista_busqueda()"> Salir </button>  <br><br>
 <table id="customers">
 <tr>
-<th>ID_ARTICULO</th> 
- <th>ARTICULO</th>
- <th>PRESENTACION</th>
- <th>PRECIO_COMPRA</th>
- <th>PRECIO_VENTA</th>
- <th>LISTAR</th>
+<th>Id_artículo</th> 
+ <th>Artículo</th>
+ <th>Presentación</th>
+ <th>Precio_compra</th>
+ <th>Precio_venta</th>
+ <th>Listar</th>
  </tr>
  <tr *ngFor = "let INVENTARIO of ListarCrud | buscador:filtro">
  <td>{{ INVENTARIO.idarticulo }}</td>
@@ -29,7 +26,7 @@
  INVENTARIO.existencia,
  INVENTARIO.presentacion,
  INVENTARIO.preciocompra,
- INVENTARIO.precioventa)"  type="button" >LISTAR</button></td>
+ INVENTARIO.precioventa)"  type="button" >Listar</button></td>
  </tr>
 </table>
 

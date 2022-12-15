@@ -1,0 +1,71 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #fondo{
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: all .5s;
+  }
+  #contenedor{
+    border-radius: 12px;
+    background:white;
+    height: 540px;
+    width: 580px;
+    margin-top: 50px;
+    margin-left: 400px;
+  }
+  form{
+    color: black;
+    text-align: center; 
+  }  
+  label{
+    font-size: 16px;
+  }
+  input[type=text]{
+    width: 345px;
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    opacity: 0.5;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }  
+  input[type=number]{
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    opacity: 0.5;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  #btn_cerrar, #btn_insertar{
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #1670E7;
+    padding-left: 10px;
+    margin-left: 15px;
+    text-align: center;
+  }  
+  #btn_cerrar:hover, #btn_insertar:hover{
+    background-color: #0857bd;
+  }

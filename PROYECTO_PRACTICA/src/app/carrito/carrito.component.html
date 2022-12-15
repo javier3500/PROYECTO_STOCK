@@ -1,0 +1,52 @@
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+   
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+    <label for="">Introducir el código del artículo o su nombre</label><br>
+    <input  [(ngModel)]= "capturar_id_articulo" name = "capturar_id_articulo" id = "capturar_id_articulo" class="buscador" type="text" required >
+    <BUtton  (click) = "agregar_lista_consulta()">Agregar a la lista</BUtton>
+    <BUtton (click) = "open_modal_listar()">Buscar</BUtton>
+    
+
+        <div class="" *ngIf="modal_lista_boton == true">
+          <app-lista-busqueda></app-lista-busqueda> 
+        </div>
+
+   
+  
+  <br><br><br>
+  <div id="creacion_pdf">
+  <table id="customers">
+    <tr>
+      <th>#</th>
+      <th>Id_artículo</th>
+      <th>Artículo</th>
+     
+      <th>presentación</th>
+      <th>Precio</th>
+      <th>Quitar</th>
+    </tr>
+    <tr *ngFor = "let LISTA_DATOS of r">
+      <td> {{LISTA_DATOS.indice_tabla}} </td>
+      <td> {{LISTA_DATOS.idarticulo}} </td>
+      <td> {{LISTA_DATOS.producto}}</td>
+      
+      <td> {{LISTA_DATOS.presentacion}}</td>
+      <td> {{LISTA_DATOS.precioventa}}</td>
+      <td><BUtton (click) = "eliminar_2(LISTA_DATOS.idarticulo)">Eliminar</BUtton></td>
+    </tr>
+    
+  </table>
+    <span for="">Total de la venta = </span>
+    <input class="buscador" [(ngModel)]="total" type="number" name="total" id="total" placeholder="$00.00" readonly>
+    <button (click) = "FINALIZARVENTA()">Finalizar</button>
+    <button  (click) = "btnCrearPdf()">Exportar</button>
+  </div>
+    
+
+  </div>
+  

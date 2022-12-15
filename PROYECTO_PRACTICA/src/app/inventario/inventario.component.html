@@ -1,0 +1,38 @@
+<div style="margin-left:17%;padding:1px 16px;height:1000px;">
+  
+  <label>Buscador: </label>
+  <input class="buscador" type="text" name="filtro" id="" placeholder="Escribe el nombre de un artículo" 
+  [(ngModel)] = "filtro">
+  <Button (click) = "open_modal_insertar()">Agregar</Button>
+  <div class="" *ngIf="modal_insertar_boton == true">
+    <app-modal-insertar></app-modal-insertar> 
+  </div>
+
+<br><br><br>
+<table id="customers" >
+<tr>
+<th>Id_articulo</th> 
+<th>Artículo</th>
+<th>Existencia</th>
+<th>Presentación</th>
+<th>Precio_compra</th>
+<th>Precio_venta</th>
+<th colspan="2">Opciones</th>
+</tr>
+
+<tr *ngFor = "let INVENTARIO of ListarCrud | buscador:filtro">
+<td>{{ INVENTARIO.idarticulo }}</td>
+<td>{{ INVENTARIO.producto }}</td>
+<td>{{ INVENTARIO.existencia }}</td>
+<td>{{ INVENTARIO.presentacion }}</td>
+<td>{{ INVENTARIO.precioventa }}</td>
+<td>{{ INVENTARIO.preciocompra }}</td>
+<td colspan="2"><button (click) = "modificar(INVENTARIO.idarticulo)" type="button">Editar</button>
+<button (click) = "eliminar(INVENTARIO.idarticulo)" type="button">Eliminar</button></td>
+
+</tr>
+
+</table>
+
+
+</div>

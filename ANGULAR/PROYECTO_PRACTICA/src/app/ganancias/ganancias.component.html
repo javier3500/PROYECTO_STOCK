@@ -1,39 +1,35 @@
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <div id="contenedor">
-
+    <br>
     <div id="opciones">
         <button id="eliminar" (click)="eliminar_lista()">Eliminar</button>
         <button id="exportar" (click)="btnCrearPdf()">Exportar</button>
     </div>
     <div id="tiempo_real">
-    <h3>Reporte en tiempo real</h3>
-    <app-ganancias-listo> </app-ganancias-listo>
+        <h3>Vista de artículos en el sistema</h3>
+        <app-ganancias-listo> </app-ganancias-listo>
     </div>
     <div id="reporte_impreso">
-    <h3>Reporte impreso</h3>
-    <table>
-        <tr>
-            <td>ID VENTA</td>
-            <td>VENTA TOTAL</td>
-            <td>COSTO TOTAL</td>
-            <td>ID GANANCIA</td>
-            <td>UTILIDAD/PERDIDA</td>
-            <td>FECHA</td>
-            <td>HORA</td>
-        </tr>
-        <tr>
-            <tr *ngFor = "let LISTA_DATOS_2 of r_2">
+        <h3>Vista del reporte impreso</h3>
+        <table>
+            <tr>
+                <td>Id_venta</td>
+                <td>Venta total</td>
+                <td>Costo total</td>
+               
+                <td>Utilidad/Pérdida</td>
+                <td>Fecha</td>
+                <td>Hora</td>
+            </tr>
+            <tr *ngFor="let LISTA_DATOS_2 of r_2">
                 <td>{{LISTA_DATOS_2.idventa}}</td>
                 <td>${{LISTA_DATOS_2.vendido}}</td>
                 <td>${{LISTA_DATOS_2.totalcompra}}</td>
-                <td>{{LISTA_DATOS_2.idganancias}}</td>
+              
                 <td>${{LISTA_DATOS_2.ganacia}}</td>
                 <td>{{LISTA_DATOS_2.fecha}}</td>
                 <td>{{LISTA_DATOS_2.hora}}</td>
-        </tr>
-    </table>
-    
+            </tr>
+        </table>
     </div>
 </div>

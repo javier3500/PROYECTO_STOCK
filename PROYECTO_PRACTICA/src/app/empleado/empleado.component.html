@@ -1,0 +1,17 @@
+<div id="cuerpo">
+  <div id="contenedor">
+    <form>
+      <label>Nombre completo:</label>
+      <input [(ngModel)]="_empleado.nombre" [ngModelOptions]="{standalone: true}" class="normal" type="text" placeholder="Nombre (s)">
+      <input [(ngModel)]="_empleado.apellido1" [ngModelOptions]="{standalone: true}"  class="apellidos" type="text" placeholder="Apellido parterno">
+      <input [(ngModel)]="_empleado.apellido2" [ngModelOptions]="{standalone: true}" class="apellidos" type="text" placeholder="Apellido materno">
+      <label>Fecha de nacimiento:</label>
+      <input [(ngModel)]="_empleado.fechanacimiento" [ngModelOptions]="{standalone: true}" class="normal" type="date" placeholder="Fecha de nacimiento">
+      <label>Sexo:</label><br>
+      <input [(ngModel)]="_empleado.sexo" [ngModelOptions]="{standalone: true}" class="normal" type="text" placeholder="Sexo">
+      <label>INE</label>
+      <input [(ngModel)]="_empleado.idempleado" [ngModelOptions]="{standalone: true}" class="normal" type="text" placeholder="Número">
+      <button (click)="agregarEmpleado()">Registrar</button>
+    </form>
+  </div>
+</div>

@@ -1,15 +1,13 @@
 <div id="contenedor">
     <div id="tiempo_real">
-    <h3>Reporte en tiempo real</h3>
     <table>
         <tr>
-            <td>ID VENTA</td>
-            <td>VENTA TOTAL</td>
-            <td>COSTO TOTAL</td>
-            <td>ID GANANCIA</td>
-            <td>UTILIDAD/PERDIDA</td>
-            <td>FECHA</td>
-            <td>HORA</td>
+            <td>Id_venta</td>
+            <td>Venta total</td>
+            <td>Costo total</td>
+            <td>Utilidad/Pérdida</td>
+            <td>Fecha</td>
+            <td>Hora</td>
             <td>Incluir</td>
         </tr>
         <tr *ngFor = "let LISTA_DATOS of r">
@@ -22,7 +20,7 @@
             <td><button (click)="agregar_reporte(
                 LISTA_DATOS.idventa,LISTA_DATOS.vendido,
                 LISTA_DATOS.totalcompra,LISTA_DATOS.idganancias,
-                LISTA_DATOS.ganacia,LISTA_DATOS.fecha,LISTA_DATOS.hora)">AGRAGAR</button></td>
+                LISTA_DATOS.ganacia,LISTA_DATOS.fecha,LISTA_DATOS.hora)" id="agregar">Agregar</button></td>
         </tr>
     </table>
     

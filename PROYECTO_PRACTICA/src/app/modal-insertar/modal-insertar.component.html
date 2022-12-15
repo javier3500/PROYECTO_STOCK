@@ -1,0 +1,24 @@
+<div id="fondo">
+  <div id="contenedor">
+    <form [formGroup]="validacion"><br><br><br>
+      <label>Código del artículo</label> <br>
+      <input formControlName="idarticulo" [(ngModel)]= "crud.idarticulo" type="text" name="idarticulo" id="idarticulo" placeholder="Insertar el codigo del articulo" required="required"><br>
+      <label>Presentación</label> <br>
+      <input formControlName="presentacion" [(ngModel)]="crud.presentacion" type="text" name="presentacion" id="presentacion" placeholder="Presentación"><br>
+      <label>Artículo</label> <br>
+      <input formControlName="producto" [(ngModel)]="crud.producto" type="text" name="producto" id="producto" placeholder="Insertar el nombre del articulo"><br>
+      <label>Existencia</label>
+      <input formControlName="existencia" [(ngModel)]="crud.existencia" type="number" name="existencia" id="existencia" placeholder="Número de artículos">
+      <label>Venta</label>
+      <input formControlName="precioventa" [(ngModel)]="crud.precioventa" type="number" name="precioventa" id="precioventa" placeholder="$00.00">
+      <label>Compra</label>
+      <input formControlName="preciocompra" [(ngModel)]="crud.preciocompra" type="number" name="preciocompra" id="preciocompra" placeholder="$00.00">
+
+      <div class="container">
+      <button id="btn_insertar" (click)="insertar_modulo()" [disabled]="!validacion.valid">Aceptar</button>
+      <button id="btn_cerrar" (click)="close_modal_insertar()" >Cerrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+<div id="contenedor">
+  <form [formGroup]="validacion">
+    <h1>Stock</h1>
+    <label>Usuario:</label><br>
+    <input [(ngModel)]="_login.nombreusuario" [ngModelOptions]="{standalone: true}" type="text" placeholder="Ingresa tu nombre"><br>
+    <label>Contraseña:</label><br>
+    <input [(ngModel)]="_login.contrasena" [ngModelOptions]="{standalone: true}" type="password" placeholder="Ingresa tu contraseña"><br>
+    <button class="btn btn-success" (click)="Iniciar()">Iniciar sesión</button>
+    <h6><i>Desarrollado por: Web Solvers Team</i></h6>
+  </form>
+</div>
