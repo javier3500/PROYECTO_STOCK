@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CRUDService, INVENTARIO,numero_presentacion,presentacion} from '../CRUD/crud.service';
 import Swal from 'sweetalert2';
 import { InventarioComponent } from '../inventario/inventario.component'; 
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-modal-insertar',
@@ -9,6 +11,8 @@ import { InventarioComponent } from '../inventario/inventario.component';
   styleUrls: ['./modal-insertar.component.css']
 })
 export class ModalInsertarComponent implements OnInit {
+
+ 
   capturar_id_articulo: string | any = ''
   modal_lista_boton:boolean = false;
   id_valor :any | number 
@@ -16,6 +20,15 @@ export class ModalInsertarComponent implements OnInit {
   id_final :any | string
   public id_venta : Array<any> =[];
   valor :string = '';
+
+  validacion = new FormGroup({
+    idarticulo:new FormControl ('', Validators.required),
+    presentacion:new FormControl ('', Validators.required),
+    producto:new FormControl ('', Validators.required),
+    existencia:new FormControl (0, Validators.required),
+    precioventa:new FormControl (0, Validators.required),
+    preciocompra:new FormControl (0, Validators.required),
+  });
 
   N_regitro: numero_presentacion= {
     id_pre:0,
@@ -88,13 +101,7 @@ export class ModalInsertarComponent implements OnInit {
     
   }
 
-  mostrar(){
-    console.log(this.id_final)
-    console.log(this.agregar_presentacion_2.idpresentacion = this.id_final)
-    console.log(this.agregar_presentacion_2.presentacion = this.crud.presentacion  )
-   
 
-  }
 
   numero_registro(){
     

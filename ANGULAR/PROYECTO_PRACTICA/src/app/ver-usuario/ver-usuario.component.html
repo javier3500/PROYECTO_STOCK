@@ -3,13 +3,13 @@
 <table id="customers">
   <thead>
     <th>Nombre</th>
-    <th>Conectividad</th>
+   
     <th>Opciones</th>
   </thead>
   <tbody>
     <tr *ngFor="let usuario of Lista">
       <td>{{usuario.nombreusuario}}</td>
-      <td>{{usuario.estado}}</td>
+      
       <td><button (click) = "eliminar_usuario(usuario.nombreusuario)" type="button" >Eliminar</button></td>
     </tr>
   </tbody>

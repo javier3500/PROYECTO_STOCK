@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { usuario, EquipoService } from '../service/equipo.service';
 //import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
@@ -10,6 +10,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit{
+  
+  validacion = new FormGroup({
+    usuario:new FormControl ('', Validators.required),
+    contrasena:new FormControl ('', Validators.required),
+    contrasena_2:new FormControl ('', Validators.required),
+    seleccionado:new FormControl ('', Validators.required),
+  });
 
   confirmacion: boolean = false;
   lista: string []=["Administrador","Usuario común"];

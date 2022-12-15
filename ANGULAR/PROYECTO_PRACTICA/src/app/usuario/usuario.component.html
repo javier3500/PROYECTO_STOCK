@@ -3,14 +3,21 @@
   <div id="contenedor">
     <form>
       <label>Nombre de usuario:</label><br>
-      <input [(ngModel)]="_usuario.nombreusuario" [ngModelOptions]="{standalone: true}" type="text" placeholder="UsuarioEjemplo"><br>
+      <input  [(ngModel)]="_usuario.nombreusuario" [ngModelOptions]="{standalone: true}" type="text" placeholder="UsuarioEjemplo"><br>
       <label>Contraseña:</label><br>
-      <input [(ngModel)]="_usuario.contrasena" [ngModelOptions]="{standalone: true}"  type="text" placeholder="Te sugerimos una contraseña larga que incluya mayúsculas y minúsculas, números y símbolos para hacerla más segura"><br>
-      <label>Confirmar contraseña:</label><br>
-      <input type="text" placeholder="Ingrese su contraseña de nuevo"><br>
+      <input  [(ngModel)]="_usuario.contrasena" [ngModelOptions]="{standalone: true}"  type="text" placeholder="Te sugerimos una contraseña larga que incluya mayúsculas y minúsculas, números y símbolos para hacerla más segura"><br>
+      
       <label>Escoger el rol que tendrá el usuario:</label><br>
-      <input [(ngModel)]="_usuario.tipo" [ngModelOptions]="{standalone: true}" type="text" placeholder="Rol del usuario"><br>
+    
+      <select  class="caja"  name="miselect" [(ngModel)]="seleccionado">
+        <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+      </select> 
+    <br>
       <button (click)="agregarUsuario()">Registrar</button>
     </form>
   </div>
+
+  
 </div>
+
+

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as html2pdf from 'html2pdf.js';
-
 import { SCarritoService,LISTA_DATOS,total,
   VENTA,numero_ventas,LISTA_DATOS_2,numero_articulos,
   exitencia,TOTAL_COSTO_1,TOTAL_COSTO_2,total_2, conseguir_id_ganancias, 
@@ -12,7 +11,6 @@ import { SCarritoService,LISTA_DATOS,total,
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-
 export class CarritoComponent implements OnInit {
   valor_real : any
   fecha_documento : Date = new Date();
@@ -174,13 +172,8 @@ export class CarritoComponent implements OnInit {
   COSTO : TOTAL_COSTO_2 = {
     preciocompra :0,
   };
-
- 
   constructor(private router : Router,private Carga :SCarritoService) {
-
-  
    }
-
     ngOnInit(): void {
     this.auxiliar.pop()
     this.arreglo_5.pop()
@@ -272,7 +265,6 @@ numero_registro_2(){
       this.id_valor_2 = this.N_regitro_2.id_gan
       }
   );
-
   this.Carga.recopilar_id_ganancias().subscribe(
     (data :any) => {
     this.id_ganancia = data
@@ -282,7 +274,6 @@ numero_registro_2(){
     this.id_final_2 = 'venta'+ this.id_valor_2 
    }
  );
-
 }
 //listo terminado
   FINALIZARVENTA()
@@ -348,7 +339,6 @@ numero_registro_2(){
         }
       })
   }
-
 //listo terminado
     agregar_lista_consulta(){
       this.Carga.Recopilar_articulo(this.capturar_id_articulo).subscribe(
@@ -383,9 +373,7 @@ numero_registro_2(){
       }
       )
     }
-//listo terminado
-  
-  
+//listo terminado 
 //listo terminado
   actualizar_existencias(){
 
@@ -432,8 +420,6 @@ numero_registro_2(){
       this.limpiar_arregle()
     
   }
-
-
 //listo
   btnCrearPdf(){
     var pdf = {
@@ -467,8 +453,6 @@ numero_registro_2(){
           condicion--
         }
   }
-
-
   eliminar_2(id:string){
     this.lista_2.idarticulo = id
     const valor_2 = this.arreglo_5.findIndex(Element =>{
@@ -535,9 +519,7 @@ numero_registro_2(){
     console.log(this.auxiliar)
    
   }
-
   open_modal_listar(){
     this.modal_lista_boton = true;
   }
-
 }

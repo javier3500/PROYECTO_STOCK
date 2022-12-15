@@ -3,6 +3,7 @@ import { login, EquipoService} from '../service/equipo.service';
 import { Router } from '@angular/router';
 import { AutenticacionService } from '../autenticacion/autenticacion.service';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+
+  validacion = new FormGroup({
+    Usuario:new FormControl ('', Validators.required),
+    password:new FormControl ('', Validators.required),
+  });
 
   cadena: string = '';
 
