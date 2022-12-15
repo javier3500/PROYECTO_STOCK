@@ -1,44 +1,55 @@
-.container{
-    width: 400px;
-    height: 625px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 7px;
-    margin-left: 550px;
-    margin-top: 150px;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .formulario{
-    margin-top: 100px;
-  }
+#cuerpo #contenedor {
+  width: 430px;
+  height: 600px;
+  background-color: whitesmoke;
+  margin-left: 565px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  box-shadow: 10px 5px 5px rgb(105, 101, 101);
+  border-radius: 10px;
+}
 
-  .normal{
-    width: 350px;
-    height: 45px;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-  }
+#cuerpo #contenedor form label {
+  margin-left: 35px;
+}
 
-  .apellidos{
-    width: 160px;
-    height: 45px;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-  }
+#cuerpo #contenedor form input {
+  margin-top: 20px;
+  margin-left: 35px;
+  margin-bottom: 10px;
+  width: 345px;
+  height: 50px;
+  font-size: 16px;
+  padding-left: 10px;
+  opacity: 0.5;
+}
 
-  form button{
-    width: 200px;
-    height: 45px;
-    margin-left: 100px;
-    border-radius: 5px;
-  }
+#cuerpo #contenedor form .apellidos {
+  margin-top: 20px;
+  margin-left: 35px;
+  margin-bottom: 20px;
+  width: 148px;
+  height: 50px;
+  font-size: 16px;
+  opacity: 0.5;
+}
 
-  form h3{
-    margin-left: 20px;
-  }
-
-  form span{
-    margin-left: 20px;
-  }
+#cuerpo #contenedor form button {
+  width: 350px;
+  height: 50px;
+  margin-left: 40px;
+  font-size: 16px;
+  background-color: #1670E7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,15 +1,17 @@
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <div id="contenedor">
+
     <div id="opciones">
         <button id="eliminar" (click)="eliminar_lista()">Eliminar</button>
         <button id="exportar" (click)="btnCrearPdf()">Exportar</button>
-      
     </div>
-        <div id="tiempo_real">
-            <app-ganancias-listo> </app-ganancias-listo>
-        </div>
-    
+    <div id="tiempo_real">
+    <h3>Reporte en tiempo real</h3>
+    <app-ganancias-listo> </app-ganancias-listo>
+    </div>
     <div id="reporte_impreso">
-        <br> <br> 
     <h3>Reporte impreso</h3>
     <table>
         <tr>
@@ -32,5 +34,6 @@
                 <td>{{LISTA_DATOS_2.hora}}</td>
         </tr>
     </table>
+    
     </div>
 </div>

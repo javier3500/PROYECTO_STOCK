@@ -1,47 +1,44 @@
-.container{
-  width: 400px;
-  height: 550px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 7px;
-  margin-left: 550px;
-  margin-top: 150px;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.formulario{
-  margin-top: 100px;
-}
-
-form input{
-  width: 350px;
-  height: 45px;
+#cuerpo #contenedor {
+  width: 430px;
+  height: 540px;
+  background-color: whitesmoke;
+  margin-left: 565px;
   display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  box-shadow: 10px 5px 5px rgb(105, 101, 101);
+  border-radius: 10px;
+}
+
+#cuerpo #contenedor form input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 345px;
+  height: 50px;
+  font-size: 16px;
+  padding-left: 10px;
+  opacity: 0.5;
+}
+
+#cuerpo #contenedor form button {
+  width: 350px;
+  height: 50px;
+  font-size: 16px;
+  background-color: #1670E7;;
+  color: white;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-form select{
-  width: 150px;
-  height: 35px;
-  margin-left: 120px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-}
 
-form button{
-  width: 200px;
-  height: 45px;
-  margin-left: 100px;
-  border-radius: 5px;
-}
-
-.formulario .archivo{
-  margin-top: 15px;
-  margin-left: 60px;
-
-}
 
 
 
